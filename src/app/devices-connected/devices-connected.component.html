@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Device connected
+      <button mat-icon-button (click)="refresh()"><mat-icon>refresh</mat-icon></button>
+      <button mat-icon-button (click)="add()"><mat-icon>add_circle_outline</mat-icon></button>
+    </mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+
+      <mat-expansion-panel *ngFor="let device of devices">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ device.name }}
+          </mat-panel-title>
+          <mat-panel-description>
+              {{ device.description }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        {{ device.content }}
+      </mat-expansion-panel>
+
+    </mat-card-content>
+</mat-card>

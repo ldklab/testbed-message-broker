@@ -1,0 +1,24 @@
+mat-toolbar {
+  margin-bottom: 1rem;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+mat-grid-tile {
+  /*border: 1px solid red;*/
+  height: 100%;
+}
+
+app-devices-connected,
+app-latest-interactions,
+app-test-area {
+  width: 98%;
+  height: 100%;
+
+  position: absolute;
+  top: 0px;
+}

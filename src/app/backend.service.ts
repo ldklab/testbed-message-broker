@@ -26,22 +26,22 @@ export class BackendService {
   interactions = [
     {
       title: 'First interaction',
-      description: '',
+      description: '5/Jun/19 @ 15:55:12',
       content: 'Content'
     },
     {
       title: 'Second interaction',
-      description: '',
+      description: '5/Jun/19 @ 15:52:41',
       content: 'Content'
     },
     {
       title: 'Third interaction',
-      description: '',
+      description: '5/Jun/19 @ 15:37:42',
       content: 'Content'
     },
     {
       title: 'Fourth interaction',
-      description: '',
+      description: '5/Jun/19 @ 15:30:22',
       content: 'Content'
     }
   ];

@@ -1,58 +1,57 @@
 import { Injectable } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+
+const API_BASE_URL = 'http://localhost:3018/api/';
+function generateAPIURL(endpoint) {
+  return API_BASE_URL + endpoint;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
 
-  devices = [
-    {
-      name: 'Smartphone',
-      description: 'Description',
-      content: 'Content'
-    },
-    {
-      name: 'Smart TV',
-      description: 'Description',
-      content: 'Content'
-    },
-    {
-      name: 'SONOS Speaker',
-      description: 'Description',
-      content: 'Content'
-    }
-  ];
+  devices: any = [];
+  interactions: any = [];
 
-  interactions = [
-    {
-      title: 'First interaction',
-      description: '5/Jun/19 @ 15:55:12',
-      content: 'Content'
-    },
-    {
-      title: 'Second interaction',
-      description: '5/Jun/19 @ 15:52:41',
-      content: 'Content'
-    },
-    {
-      title: 'Third interaction',
-      description: '5/Jun/19 @ 15:37:42',
-      content: 'Content'
-    },
-    {
-      title: 'Fourth interaction',
-      description: '5/Jun/19 @ 15:30:22',
-      content: 'Content'
-    }
-  ];
+  devicesSubject;
+  interactionsSubject;
 
-  constructor() { }
+  constructor(private socket: Socket,
+              private http: HttpClient) {
+
+    this.devicesSubject = new Subject<any>();
+    this.interactionsSubject = new Subject<any>();
+
+
+    this.http.get(generateAPIURL('devices'))
+    .subscribe((devices) => {
+      this.devicesSubject.next(devices);
+    });
+
+    this.http.get(generateAPIURL('interactions'))
+    .subscribe((devices) => {
+      this.interactionsSubject.next(devices);
+    });
+
+
+    this.socket.on('newDevices', (devices) => {
+      this.devicesSubject.next(devices);
+    });
+
+    this.socket.on('newInteractions', (interactions) => {
+
+    });
+  }// End of constructor()
+
 
   getDevices() {
-    return [...this.devices];
+    return this.devicesSubject;
   }
 
   getInteractions() {
-    return [...this.interactions];
+    return this.interactionsSubject;
   }
 }

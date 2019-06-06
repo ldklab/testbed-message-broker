@@ -13,10 +13,13 @@ export class LatestInteractionsComponent implements OnInit {
   constructor(private backend: BackendService) { }
 
   ngOnInit() {
-    this.interactions = this.backend.getInteractions();
+    this.backend.getInteractions()
+    .subscribe((interactions: any) => {
+      this.interactions = interactions;
+    });
   }
 
   refresh() {
-
+    console.log('Refresh');
   }
 }

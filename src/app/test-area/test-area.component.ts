@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-test-area',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestAreaComponent implements OnInit {
 
-  constructor() { }
+  devices: any = [];
+
+  constructor(private backend: BackendService) { }
 
   ngOnInit() {
+    this.backend.getDevices()
+    .subscribe((devices: any) => {
+      this.devices = devices;
+    });
   }
 
+  sendRequest(myForm) {
+    console.log(myForm.form.controls);
+  }
 }

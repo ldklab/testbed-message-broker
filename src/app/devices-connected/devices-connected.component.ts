@@ -19,15 +19,19 @@ export class DevicesConnectedComponent implements OnInit {
   constructor(private backend: BackendService) { }
 
   ngOnInit() {
-    this.devices = this.backend.getDevices();
+    this.backend.getDevices()
+    .subscribe((devices: any) => {
+      this.devices = devices;
+    });
   }
 
   refresh() {
-    this.devices = this.backend.getDevices();
+    console.log('Refresh');
+    // this.devices = this.backend.getDevices();
   }
 
   add() {
-    let rndNmbr = Math.floor(Math.random() * 99) + 1;
+    const rndNmbr = Math.floor(Math.random() * 99) + 1;
     this.devices.push(
       {
         name: 'Device ' + rndNmbr,

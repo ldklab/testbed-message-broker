@@ -4,18 +4,59 @@
   </mat-card-header>
   <mat-card-content>
 
-    <ng-form #myForm="ngForm">
+    <ng-form #myForm="ngForm" class="outerForm">
 
-      <mat-form-field class="example-full-width">
-          <input matInput ngModel name="title" placeholder="Title" autocomplete="off">
+      <mat-form-field class="inputField">
+          <input matInput
+            ngModel
+            name="title"
+            placeholder="Title"
+            autocomplete="off"
+            required>
       </mat-form-field>
 
-      <div>
-        <mat-radio-group aria-label="Select an option" name="device" ngModel>
-            <mat-radio-button [value]="device.name" *ngFor="let device of devices" style='display: block'>{{ device.name }}</mat-radio-button>
+      <mat-form-field class="inputField">
+          <textarea
+            matInput
+            ngModel
+            name="message"
+            placeholder="Message"
+            autocomplete="off"
+            required></textarea>
+      </mat-form-field>
+
+      <div class="inputField">
+        Level:
+        <mat-radio-group aria-label="Select an option" name="level" ngModel required>
+            <mat-radio-button
+              color="primary"
+              [value]="number"
+              *ngFor="let number of [1,2,3,4,5]"
+              style='margin-right: 1.5rem;'>{{ number }}</mat-radio-button>
         </mat-radio-group>
       </div>
-      <button mat-raised-button (click)="sendRequest(myForm)">Send request</button>
+
+      <div class="inputField">
+        Select device:
+        <mat-radio-group aria-label="Select an option" name="device" ngModel>
+            <mat-radio-button
+              color="primary"
+              [value]="device.name"
+              *ngFor="let device of devices"
+              style='display: block'>{{ device.name }}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="sendRequest(myForm)"
+        [disabled]="!myForm.valid">Send request</button>
+
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="resetForm(myForm)">Reset From</button>
 
     </ng-form>
 

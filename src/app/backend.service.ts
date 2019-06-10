@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Interaction } from './models/interaction.model';
 
 const API_BASE_URL = 'http://localhost:3018/api/';
 function generateAPIURL(endpoint) {
@@ -31,7 +32,7 @@ export class BackendService {
       this.devicesSubject.next(devices);
     });
 
-    this.http.get(generateAPIURL('interactions'))
+    this.http.get<Interaction[]>(generateAPIURL('interactions'))
     .subscribe((devices) => {
       this.interactionsSubject.next(devices);
     });
@@ -42,7 +43,7 @@ export class BackendService {
     });
 
     this.socket.on('newInteractions', (interactions) => {
-
+      this.interactionsSubject.next(interactions);
     });
   }// End of constructor()
 
@@ -51,7 +52,20 @@ export class BackendService {
     return this.devicesSubject;
   }
 
+
+  // ---------- INTERACTIONS ----------
+
   getInteractions() {
     return this.interactionsSubject;
   }
+
+  postInteraction(interaction: Interaction) {
+    return this.http.post(generateAPIURL('interactions'), interaction);
+  }
+
+  deleteInteraction(interaction: Interaction) {
+    return this.http.delete(generateAPIURL('interactions/' + interaction.id));
+  }
+
+  // ---------- END INTERACTIONS ----------
 }

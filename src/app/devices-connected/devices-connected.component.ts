@@ -10,6 +10,7 @@ export class DevicesConnectedComponent implements OnInit {
 
   devices = [
     {
+      online: true,
       name: 'Smartphone',
       description: 'Description',
       content: 'Content'
@@ -34,6 +35,7 @@ export class DevicesConnectedComponent implements OnInit {
     const rndNmbr = Math.floor(Math.random() * 99) + 1;
     this.devices.push(
       {
+        online: true,
         name: 'Device ' + rndNmbr,
         description: 'Description',
         content: 'Content'

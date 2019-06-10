@@ -10,7 +10,8 @@
       <mat-expansion-panel *ngFor="let device of devices">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ device.name }}
+              <span><mat-icon [style.color]="device.online ? '#00cc00' : '#a0a0a0'">fiber_manual_record</mat-icon></span>
+              {{ device.name }}
           </mat-panel-title>
           <mat-panel-description>
               {{ device.description }}

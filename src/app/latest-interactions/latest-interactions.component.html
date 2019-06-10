@@ -9,14 +9,21 @@
     <mat-expansion-panel *ngFor="let interaction of interactions">
         <mat-expansion-panel-header>
           <mat-panel-title>
+            <span><mat-icon [style.color]="interaction.dotColor">fiber_manual_record</mat-icon></span>
             {{ interaction.title }}
           </mat-panel-title>
           <mat-panel-description>
-              {{ interaction.description }}
+              {{ interaction.timestamp | date:'dd/MMM/yy @ HH:mm:ss'  }}
+              <!--{{ interaction.description }}-->
           </mat-panel-description>
         </mat-expansion-panel-header>
 
         {{ interaction.content }}
+
+        <p>Id: {{ interaction.id }}</p>
+
+        <br>
+        <button mat-raised-button color="warn" (click)="deleteInteraction(interaction)">Delete</button>
       </mat-expansion-panel>
 
   </mat-card-content>

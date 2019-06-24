@@ -18,11 +18,10 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        {{ interaction.content }}
+        <pre>
+          {{ interaction | json }}
+        </pre>
 
-        <p>Id: {{ interaction.id }}</p>
-
-        <br>
         <button mat-raised-button color="warn" (click)="deleteInteraction(interaction)">Delete</button>
       </mat-expansion-panel>
 

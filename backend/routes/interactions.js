@@ -48,28 +48,32 @@ module.exports = function(io){
       timestamp: 1560174284309,
       description: '5/Jun/19 @ 15:55:12',
       content: 'Content',
-      status: 1
+      status: 1,
+      level: 1
     }),
     new Interaction({
       title: 'Second interaction',
       timestamp: 1560175284209,
       description: '5/Jun/19 @ 15:52:41',
       content: 'Content',
-      status: 1
+      status: 1,
+      level: 1
     }),
     new Interaction({
       title: 'Third interaction',
       timestamp: 1560176284109,
       description: '5/Jun/19 @ 15:37:42',
       content: 'Content',
-      status: 3
+      status: 3,
+      level: 1
     }),
     new Interaction({
       title: 'Fourth interaction',
       timestamp: 1560177274009,
       description: '5/Jun/19 @ 15:30:22',
       content: 'Content',
-      status: 2
+      status: 2,
+      level: 1
     })
   ];
 

@@ -39,11 +39,13 @@
       <div class="inputField">
         Select device:
         <mat-radio-group aria-label="Select an option" name="device" ngModel>
-            <mat-radio-button
+          <span *ngFor="let device of devices">            <mat-radio-button
               color="primary"
               [value]="device.name"
-              *ngFor="let device of devices"
+              *ngIf="device.online"
               style='display: block'>{{ device.name }}</mat-radio-button>
+          </span>
+
         </mat-radio-group>
       </div>
 

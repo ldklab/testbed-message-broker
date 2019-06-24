@@ -35,8 +35,8 @@ module.exports = function(io){
   router.delete('/:id', function (req, res) {
     console.log("Deleting id: " + req.params.id);
     interactions = interactions.filter(interaction => interaction.id !== req.params.id);
-    res.status(200).json(interactions);
     io.emit("newInteractions", interactions);
+    res.status(200).json(interactions);
   });
 
   interactions = [

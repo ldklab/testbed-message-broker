@@ -21,17 +21,17 @@ export class LatestInteractionsComponent implements OnInit {
         let dotColor;
         switch (interaction.status) {
           case 1:
-            dotColor = '#ffeb3b';
+            dotColor = '#ffeb3b'; // Pending = yellow
             break;
           case 2:
-            dotColor = '#00cc00';
+            dotColor = '#00cc00'; // Completed = Green
             break;
           case 3:
-            dotColor = '#d50000';
+            dotColor = '#d50000'; // Canceled = red
             break;
 
           default:
-            dotColor = '#ffffff';
+            dotColor = '#000000'; // WTF happened? = black
         }
 
         return {

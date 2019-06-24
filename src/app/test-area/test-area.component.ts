@@ -33,7 +33,7 @@ export class TestAreaComponent implements OnInit {
       title: values.title,
       message: values.message,
       level: values.level
-    }
+    };
 
     this.backend.postInteraction(interaction)
     .subscribe(response => {

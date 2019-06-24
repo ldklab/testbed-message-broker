@@ -3,6 +3,7 @@ import { Socket } from 'ngx-socket-io';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Interaction } from './models/interaction.model';
+import { Device } from './models/device.model';
 
 const API_BASE_URL = 'http://localhost:3018/api/';
 function generateAPIURL(endpoint) {
@@ -27,14 +28,20 @@ export class BackendService {
     this.interactionsSubject = new Subject<any>();
 
 
-    this.http.get(generateAPIURL('devices'))
+    this.http.get<any[]>(generateAPIURL('devices'))
     .subscribe((devices) => {
-      this.devicesSubject.next(devices);
+      const newDevices = devices.map(x => {
+        return {
+          id: x._id,
+          ...x
+        };
+      });
+      this.devicesSubject.next(newDevices);
     });
 
-    this.http.get<Interaction[]>(generateAPIURL('interactions'))
-    .subscribe((devices) => {
-      this.interactionsSubject.next(devices);
+    this.http.get<any[]>(generateAPIURL('interactions'))
+    .subscribe((interactions) => {
+      this.processNewInteractions(interactions);
     });
 
 
@@ -43,9 +50,20 @@ export class BackendService {
     });
 
     this.socket.on('newInteractions', (interactions) => {
-      this.interactionsSubject.next(interactions);
+      this.processNewInteractions(interactions);
     });
   }// End of constructor()
+
+
+  processNewInteractions(interactions){
+    const newInteractions = interactions.map(x => {
+      return {
+        id: x._id,
+        ...x
+      };
+    });
+    this.interactionsSubject.next(newInteractions);
+  }
 
 
   getDevices() {

@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+const Interaction = require('../models/interaction.model');
+
+var progressiveID = 0;
 
 module.exports = function(io){
 
@@ -11,23 +14,23 @@ module.exports = function(io){
 
   router.post('', function (req, res) {
     console.log(req.body);
-    const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    const rndID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
-    const newInteraction = {
-      id: id,
+    const newInteraction = new Interaction({
+      us_id: ++progressiveID,
       timestamp: Date.now(),
       status: 1,
       title: req.body.title,
       message: req.body.message,
       level: req.body.level
-    }
+    });
 
     interactions = [
       newInteraction,
       ...interactions
     ];
 
-    res.status(200).json(interactions);
+    res.status(200).json(newInteraction);
     io.emit("newInteractions", interactions);
   });
 
@@ -40,38 +43,34 @@ module.exports = function(io){
   });
 
   interactions = [
-    {
-      id: 'ifhwqikqfhnwfqwfcqw',
+    new Interaction({
       title: 'First interaction',
       timestamp: 1560174284309,
       description: '5/Jun/19 @ 15:55:12',
       content: 'Content',
       status: 1
-    },
-    {
-      id: 'ifhwqikqgrebefhnfcqw',
+    }),
+    new Interaction({
       title: 'Second interaction',
       timestamp: 1560175284209,
       description: '5/Jun/19 @ 15:52:41',
       content: 'Content',
       status: 1
-    },
-    {
-      id: 'ifhwqikqfwedqwdqwhnfcqw',
+    }),
+    new Interaction({
       title: 'Third interaction',
       timestamp: 1560176284109,
       description: '5/Jun/19 @ 15:37:42',
       content: 'Content',
       status: 3
-    },
-    {
-      id: 'ifhwqigewkqfhnfcqw',
+    }),
+    new Interaction({
       title: 'Fourth interaction',
       timestamp: 1560177274009,
       description: '5/Jun/19 @ 15:30:22',
       content: 'Content',
       status: 2
-    }
+    })
   ];
 
   return router;

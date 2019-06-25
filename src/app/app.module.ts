@@ -21,9 +21,11 @@ import {  MatGridListModule,
           MatCheckboxModule,
           MatRadioModule,
           MatFormFieldModule,
-          MatInputModule } from '@angular/material';
+          MatInputModule,
+          MatDialogModule } from '@angular/material';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { AddDeviceComponent } from './devices-connected/add-device/add-device.component';
 const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
 
 @NgModule({
@@ -31,7 +33,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     AppComponent,
     DevicesConnectedComponent,
     LatestInteractionsComponent,
-    TestAreaComponent
+    TestAreaComponent,
+    AddDeviceComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     MatCheckboxModule,
     MatRadioModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

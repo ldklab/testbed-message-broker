@@ -22,13 +22,15 @@ const drivers = [
 ];
 
 class DriverTool {
+
   constructor() {
     console.log('New DriverTool');
+    this.lastFoundDevices = [];
   }
 
   scan() {
 
-    devices = [];
+    this.lastFoundDevices = [];
 
     drivers.forEach(driver => { //Scanning with each driver
 
@@ -36,12 +38,26 @@ class DriverTool {
         console.log(device);
         device.driver_id = driver._id;
 
-        devices.push(device);
+        this.lastFoundDevices.push(device);
       })
 
     });
 
-    return devices;
+    return this.lastFoundDevices;
+  }
+
+  add(id) {
+    let result = this.lastFoundDevices.filter(device => {
+      console.log(device._id);
+      return device._id == id
+    });
+    console.log(typeof(id));
+
+    console.log(id);
+    console.log(this.lastFoundDevices);
+    console.log('Result', result);
+
+    return result;
   }
 }
 

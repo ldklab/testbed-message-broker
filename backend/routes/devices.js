@@ -7,6 +7,7 @@ const DriverTools = require('../drivers/drivers');
 const DT = new DriverTools();
 
 module.exports = function(io){
+
   router.get('', function (req, res) {
     res.status(200).json(devices);
   });
@@ -34,6 +35,19 @@ module.exports = function(io){
 
     res.status(200).send(result);
   });
+
+
+  router.post('/scan', function (req, res) {
+
+    var result = DT.add(req.body.id);
+    devices = [
+      result[0],
+      ...devices
+    ]
+    io.emit("newDevices", devices);
+    res.status(200).send(result);
+  });
+
 
   //FAKE DATA
   devices = [

@@ -9,6 +9,9 @@ module.exports = {
     return [
       new Device({
         name: 'Random device'
+      }),
+      new Device({
+        name: 'Other random device'
       })
     ];
   },

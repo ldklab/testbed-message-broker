@@ -1,3 +1,27 @@
-<p>
-  add-device works!
-</p>
+<mat-dialog-content>
+  <table>
+    <tr *ngFor='let device of devices'>
+      <td>
+        {{ device.name }}
+      </td>
+      <td>
+        <button
+          mat-raised-button
+          color='primary'
+          (click)='addDevice(device._id)'
+          >Add</button>
+      </td>
+    </tr>
+  </table>
+
+  <h3>Debug</h3>
+  <pre>
+    {{ devices | json}}
+  </pre>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true">Yes</button>
+</mat-dialog-actions>

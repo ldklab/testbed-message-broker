@@ -29,7 +29,6 @@ class DriverTool {
   }
 
   scan() {
-
     this.lastFoundDevices = [];
 
     drivers.forEach(driver => { //Scanning with each driver
@@ -46,14 +45,11 @@ class DriverTool {
     return this.lastFoundDevices;
   }
 
-  add(id) {
-    let result = this.lastFoundDevices.filter(device => {
-      console.log(device._id);
-      return device._id == id
-    });
-    console.log(typeof(id));
 
-    console.log(id);
+  add(id) {
+    let result = this.lastFoundDevices.filter(device => device._id == id);
+
+    console.log('ID requested: ' + id);
     console.log(this.lastFoundDevices);
     console.log('Result', result);
 

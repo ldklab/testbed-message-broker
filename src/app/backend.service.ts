@@ -77,6 +77,14 @@ export class BackendService {
     return this.http.post(generateAPIURL('devices'), device);
   }
 
+  scanDevices() {
+    return this.http.get<Device[]>(generateAPIURL('devices/scan'));
+  }
+
+  addDevice(id) {
+    return this.http.post(generateAPIURL('devices/scan'), {id});
+  }
+
   // ---------- END DEVICES ----------
 
 

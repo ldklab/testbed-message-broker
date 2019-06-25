@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DevicesConnectedComponent } from './devices-connected/devices-connected.component';
 import { LatestInteractionsComponent } from './latest-interactions/latest-interactions.component';
 import { TestAreaComponent } from './test-area/test-area.component';
+import { AddDeviceComponent } from './devices-connected/add-device/add-device.component';
 
 import {  MatGridListModule,
           MatToolbarModule,
@@ -25,7 +26,7 @@ import {  MatGridListModule,
           MatDialogModule } from '@angular/material';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { AddDeviceComponent } from './devices-connected/add-device/add-device.component';
+
 const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
 
 @NgModule({
@@ -60,6 +61,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddDeviceComponent]
 })
 export class AppModule { }

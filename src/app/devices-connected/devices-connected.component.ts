@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Device } from '../models/device.model';
+import { MatDialog } from '@angular/material';
+import { AddDeviceComponent } from './add-device/add-device.component';
 
 @Component({
   selector: 'app-devices-connected',
@@ -18,7 +20,8 @@ export class DevicesConnectedComponent implements OnInit {
     }
   ];
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.backend.getDevices()
@@ -33,6 +36,11 @@ export class DevicesConnectedComponent implements OnInit {
   }
 
   add() {
+    const dialogRef = this.dialog.open(AddDeviceComponent, {
+      //width: '250px',
+      data: {}
+    });
+    /*
     const rndNmbr = Math.floor(Math.random() * 99) + 1;
 
     const newDevice: Device = {
@@ -48,7 +56,7 @@ export class DevicesConnectedComponent implements OnInit {
     this.backend.postDevice(newDevice)
     .subscribe(result => {
       console.log(result);
-    });
+    });*/
   }
 
 }

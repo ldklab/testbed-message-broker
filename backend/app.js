@@ -25,7 +25,7 @@ app.use("/api/devices", devicesRoutes);
 
 
 io.on('connection', function (socket) {
-  console.log("Someone connected!");
+  console.log("Someone connected to Socket.io!");
   //socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log(data);

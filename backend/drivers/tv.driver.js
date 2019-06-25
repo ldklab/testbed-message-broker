@@ -19,13 +19,32 @@ server.on('message', function (message, rinfo) {
 module.exports = {
   //SEARCH/SCAN for device
   scan: function(){
-    var myObj = {deviceType: "TV"};
-    var message = new Buffer(JSON.stringify(myObj));
-    server.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() { //null = 127.0.0.1
-      console.log("Sent '" + message + "'from ip: " + ip.address() + " to broadcast addr: " + BROADCAST_ADDR);
-    });
 
-    return [];
+    return new Promise(function (resolve, reject) {
+      let reqServer = dgram.createSocket('udp4');
+      //reqServer.setBroadcast(true);
+      //reqServer.bind(PORT);
+
+      var myObj = {deviceType: "TV"};
+      var message = new Buffer(JSON.stringify(myObj));
+      reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
+        console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
+      });
+
+      reqServer.on('message', function (message, rinfo) {
+        var receivedMessage = JSON.parse(message);
+        console.log('Received back: ', receivedMessage);
+
+
+        resolve();
+      });
+
+      setTimeout(() => {
+        reqServer.close();
+        reject();
+      }, 1000);
+
+    });
   },
 
   //CHECK availability

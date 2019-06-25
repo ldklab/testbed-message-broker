@@ -3,22 +3,22 @@ const Device = require('../models/device.model');
 //const TemplateDriver = require('./template.driver');
 
 const drivers = [
-  new Driver({
+  /*new Driver({
     name: 'Template',
     obj: require('./template.driver')
-  }),
+  }),*/
   new Driver({
     name: 'TV Driver',
     obj: require('./tv.driver')
   }),
-  new Driver({
+  /*new Driver({
     name: 'Smartphone Driver',
     obj: require('./smartphone.driver')
   }),
   new Driver({
     name: 'SONOS Driver',
     obj: require('./speaker.driver')
-  }),
+  }),*/
 ];
 
 class DriverTool {
@@ -33,12 +33,19 @@ class DriverTool {
 
     drivers.forEach(driver => { //Scanning with each driver
 
-      driver.obj.scan().forEach(device => {
+      /*driver.obj.scan().forEach(device => {
         console.log(device);
         device.driver_id = driver._id;
 
         this.lastFoundDevices.push(device);
-      })
+      });*/
+
+      driver.obj.scan()
+      .then(devices => {
+        console.log("Promise resolved!");
+      }).catch(error => {
+        console.log('Promise rejected');
+      });
 
     });
 

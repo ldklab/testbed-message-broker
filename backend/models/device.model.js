@@ -16,7 +16,7 @@ const deviceSchema = mongoose.Schema({ //This is just a blueprint
   address: { type: String, required: false },
   driver: { type: String, required: false },
   driver_id: { type: String, required: false },
-
+  online: { type: Boolean, require: false }
 });
 
-module.exports = mongoose.model('Device', interactionSchema); //Collection name is interactions
+module.exports = mongoose.model('Device', deviceSchema); //Collection name is interactions

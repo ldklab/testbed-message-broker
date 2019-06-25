@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const Device = require('../models/device.model');
 
 module.exports = function(io){
   router.get('', function (req, res) {
@@ -21,29 +22,23 @@ module.exports = function(io){
     res.status(200).send({message: "Device added!"});
   });
 
-
-
-
   //FAKE DATA
   devices = [
-    {
+    new Device({
       online: true,
       name: 'Smartphone',
-      description: 'Description',
-      content: 'Content'
-    },
-    {
+      description: 'Description'
+    }),
+    new Device({
       online: false,
       name: 'Smart TV',
-      description: 'Description',
-      content: 'Content'
-    },
-    {
+      description: 'Description'
+    }),
+    new Device({
       online: true,
       name: 'SONOS Speaker',
-      description: 'Description',
-      content: 'Content'
-    }
+      description: 'Description'
+    })
   ];
 
   return router;

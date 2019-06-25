@@ -18,7 +18,11 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        {{ device.content }}
+        <pre>
+          {{ device | json }}
+        </pre>
+
+
       </mat-expansion-panel>
 
     </mat-card-content>

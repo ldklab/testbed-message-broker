@@ -15,7 +15,7 @@ export class LatestInteractionsComponent implements OnInit {
 
   ngOnInit() {
     this.backend.getInteractions()
-    .subscribe((interactions: any) => {
+    .subscribe((interactions: Interaction[]) => {
       this.interactions = interactions
       .map(interaction => {
         let dotColor;

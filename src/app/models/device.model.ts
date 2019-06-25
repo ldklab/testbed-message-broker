@@ -9,4 +9,5 @@ export interface Device {
   address?: string;
   driver?: string;
   driver_id?: string;
+  online?: boolean;
 }

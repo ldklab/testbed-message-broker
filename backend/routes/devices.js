@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const Device = require('../models/device.model');
+const DriverTools = require('../drivers/drivers');
+
+const DT = new DriverTools();
 
 module.exports = function(io){
   router.get('', function (req, res) {
@@ -10,16 +13,26 @@ module.exports = function(io){
 
   router.post('', function (req, res) {
     let rndNmbr = Math.floor(Math.random() * 99) + 1;
-    devices.push(
-      {
-        name: 'Device ' + rndNmbr,
-        description: 'Description',
-        content: 'Content'
-      }
-    );
+
+    const newDevice = new Device(req.body); // Should check all the fields
+
+    devices = [
+      newDevice,
+      ...devices
+    ]
+
+
     console.log("Device added!");
     io.emit("newDevices", devices);
-    res.status(200).send({message: "Device added!"});
+    res.status(200).send(devices);
+  });
+
+
+  router.get('/scan', function (req, res) {
+
+    var result = DT.scan();
+
+    res.status(200).send(result);
   });
 
   //FAKE DATA

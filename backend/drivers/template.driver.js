@@ -1,16 +1,24 @@
-module.exports = function(){
-  //SEARCH/SCAN for device
-  function scan(){
+const Device = require('../models/device.model');
 
-  }
+module.exports = {
+
+  //SEARCH/SCAN for device
+  scan: function(){
+    console.log('Scan called');
+
+    return [
+      new Device({
+        name: 'Random device'
+      })
+    ];
+  },
 
   //CHECK availability
-  function available(){
-
-  }
+  available :function(){
+  },
 
   //SEND interaciton
-  function send(){
+  send: function(){
 
   }
 }

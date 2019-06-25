@@ -5,7 +5,7 @@ export interface Device {
   name: string;
   description?: string;
   capabilities: Capabilities;
-  lastActive: Date;
+  lastActive?: Date;
   address?: string;
   driver?: string;
   driver_id?: string;

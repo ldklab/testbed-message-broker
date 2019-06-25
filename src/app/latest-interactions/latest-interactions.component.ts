@@ -47,7 +47,7 @@ export class LatestInteractionsComponent implements OnInit {
   }
 
   deleteInteraction(interaction: Interaction) {
-    console.log('Deleting ' + interaction.id);
+    console.log('Deleting ' + interaction._id);
     this.backend.deleteInteraction(interaction)
     .subscribe((result) => {
       console.log(result);

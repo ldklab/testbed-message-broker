@@ -73,6 +73,10 @@ export class BackendService {
     return this.devicesSubject;
   }
 
+  postDevice(device: Device) {
+    return this.http.post(generateAPIURL('devices'), device);
+  }
+
   // ---------- END DEVICES ----------
 
 

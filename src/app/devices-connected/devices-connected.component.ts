@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
+import { Device } from '../models/device.model';
 
 @Component({
   selector: 'app-devices-connected',
@@ -33,14 +34,21 @@ export class DevicesConnectedComponent implements OnInit {
 
   add() {
     const rndNmbr = Math.floor(Math.random() * 99) + 1;
-    this.devices.push(
-      {
-        online: true,
-        name: 'Device ' + rndNmbr,
-        description: 'Description',
-        content: 'Content'
+
+    const newDevice: Device = {
+      online: true,
+      name: 'Device ' + rndNmbr,
+      description: 'Description',
+      capabilities: {
+        in: ['Touch'],
+        out: ['Video']
       }
-    );
+    };
+
+    this.backend.postDevice(newDevice)
+    .subscribe(result => {
+      console.log(result);
+    });
   }
 
 }

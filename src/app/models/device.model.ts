@@ -1,7 +1,7 @@
 import { Capabilities } from './capabilities.model';
 
 export interface Device {
-  id?: string;
+  _id?: string;
   name: string;
   description?: string;
   capabilities: Capabilities;

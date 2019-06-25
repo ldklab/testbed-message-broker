@@ -28,25 +28,19 @@ export class BackendService {
     this.interactionsSubject = new Subject<any>();
 
 
-    this.http.get<any[]>(generateAPIURL('devices'))
+    this.http.get<Device[]>(generateAPIURL('devices'))
     .subscribe((devices) => {
-      const newDevices = devices.map(x => {
-        return {
-          id: x._id,
-          ...x
-        };
-      });
-      this.devicesSubject.next(newDevices);
+      this.processNewDevices(devices);
     });
 
-    this.http.get<any[]>(generateAPIURL('interactions'))
+    this.http.get<Interaction[]>(generateAPIURL('interactions'))
     .subscribe((interactions) => {
       this.processNewInteractions(interactions);
     });
 
 
     this.socket.on('newDevices', (devices) => {
-      this.devicesSubject.next(devices);
+      this.processNewDevices(devices);
     });
 
     this.socket.on('newInteractions', (interactions) => {
@@ -55,24 +49,35 @@ export class BackendService {
   }// End of constructor()
 
 
-  processNewInteractions(interactions){
-    const newInteractions = interactions.map(x => {
+  processNewInteractions(interactions) {
+    /*const newInteractions = interactions.map(x => {
       return {
         id: x._id,
         ...x
       };
     });
     this.interactionsSubject.next(newInteractions);
+    */
+   // No need to do this anymore
+   this.interactionsSubject.next(interactions);
+  }
+
+  processNewDevices(devices) {
+    this.devicesSubject.next(devices);
   }
 
 
+
+  // ---------- DEVICES ----------
   getDevices() {
     return this.devicesSubject;
   }
 
+  // ---------- END DEVICES ----------
+
+
 
   // ---------- INTERACTIONS ----------
-
   getInteractions() {
     return this.interactionsSubject;
   }
@@ -82,7 +87,7 @@ export class BackendService {
   }
 
   deleteInteraction(interaction: Interaction) {
-    return this.http.delete(generateAPIURL('interactions/' + interaction.id));
+    return this.http.delete(generateAPIURL('interactions/' + interaction._id));
   }
 
   // ---------- END INTERACTIONS ----------

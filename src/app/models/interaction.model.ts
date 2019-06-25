@@ -2,7 +2,7 @@ import { InteractionButton } from './interaction-button.model';
 import { InteractionInput } from './interaction-input.model';
 
 export interface Interaction {
-  id?: string;
+  _id?: string;
   timestamp?: Date;
   us_id?: string;
   status?: number;

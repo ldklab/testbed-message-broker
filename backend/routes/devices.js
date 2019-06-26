@@ -31,9 +31,14 @@ module.exports = function(io){
 
   router.get('/scan', function (req, res) {
 
-    var result = DT.scan();
+    DT.scan()
+    .then(devices => {
+      res.status(200).send(devices);
+    }).catch(e => {
+      res.status(500).send({'message': 'Something bad happened!', 'error': e});
+    });
 
-    res.status(200).send(result);
+
   });
 
 

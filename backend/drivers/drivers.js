@@ -25,31 +25,55 @@ class DriverTool {
 
   constructor() {
     console.log('New DriverTool');
-    this.lastFoundDevices = [];
   }
 
   scan() {
-    this.lastFoundDevices = [];
 
-    drivers.forEach(driver => { //Scanning with each driver
+    return new Promise(function(resolve, reject){
+      console.log("scanning1");
+      var promises = [];
+      let foundDevices = [];
+      drivers.forEach(driver => { //Scanning with each driver
 
-      /*driver.obj.scan().forEach(device => {
-        console.log(device);
-        device.driver_id = driver._id;
+        /*driver.obj.scan().forEach(device => {
+          console.log(device);
+          device.driver_id = driver._id;
 
-        this.lastFoundDevices.push(device);
-      });*/
+          this.lastFoundDevices.push(device);
+        });*/
 
-      driver.obj.scan()
-      .then(devices => {
-        console.log("Promise resolved!");
-      }).catch(error => {
-        console.log('Promise rejected');
-      });
+        console.log("scanning2");
+        var promise = driver.obj.scan();
+        /*.then(devices => {
+          console.log("Promise resolved!");
+          // ToDo: add driver_id to each device
+          devices = devices.map(x => x.driver_id = driver._id);
+          this.lastFoundDevices.push(devices);
+        }).catch(error => {
+          console.log('Scan of ' + driver.name + ' timed out!');
+        });*/
 
-    });
+        promises.push(promise);
 
-    return this.lastFoundDevices;
+      }); //End of forEach
+
+      console.log('Promises: ', promises);
+
+      Promise.all(promises)
+      .then(devicesArrayArray => {
+        console.log('devicesArrayArray: ', devicesArrayArray);
+
+        devicesArrayArray.forEach(deviceArray => {
+          deviceArray.forEach(device => foundDevices.push(device));
+        });
+
+        resolve(foundDevices);
+      }).catch(e => {
+        console.log('Error here!');
+        reject(e);
+      });//End Promise.all
+
+    }); //End of new Promise
   }
 
 

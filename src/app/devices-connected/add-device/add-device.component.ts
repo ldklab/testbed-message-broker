@@ -10,18 +10,22 @@ import { Device } from 'src/app/models/device.model';
 export class AddDeviceComponent implements OnInit {
 
   devices: Device[];
+  loading: boolean;
 
   constructor(private backend: BackendService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.backend.scanDevices()
     .subscribe(devices => {
+      this.loading = false;
       this.devices = devices;
     });
   }
 
   addDevice(id) {
     console.log('Adding device id: ' + id);
+
     this.backend.addDevice(id)
     .subscribe(result => {
       console.log(result);

@@ -1,5 +1,8 @@
 <mat-dialog-content>
-  <table>
+
+  <mat-spinner *ngIf='loading'  style='margin: auto'></mat-spinner>
+
+  <table width="100%" border='1'>
     <tr *ngFor='let device of devices'>
       <td>
         {{ device.name }}

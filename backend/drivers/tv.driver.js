@@ -43,13 +43,13 @@ module.exports = {
         //reqServer.close();
         //resolve(); // Can't resolve here otherwise the scan will find just one device
         foundDevice = new Device({
-          id: D.id,
+          deviceID: D.deviceID,
           name: D.name,
           lastActive: D.timestamp,
           address: D.address,
           //port: D.port //Not standard
           online: true,
-          driver_id: driverID
+          driverID: driverID
         });
 
         foundDevices.push(foundDevice);

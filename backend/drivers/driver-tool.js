@@ -21,17 +21,43 @@ const drivers = [
   }),*/
 ];
 
+
+//FAKE DATA
+devices = [
+  new Device({
+    online: true,
+    name: 'Smartphone',
+    description: 'Description'
+  }),
+  new Device({
+    online: false,
+    name: 'Smart TV',
+    description: 'Description'
+  }),
+  new Device({
+    online: true,
+    name: 'SONOS Speaker',
+    description: 'Description'
+  })
+];
+
+let foundDevices = [];
+
 class DriverTool {
 
   constructor() {
     console.log('New DriverTool');
   }
 
+  getDevices(){
+    return devices;
+  }
+
   scan() {
 
     return new Promise(function(resolve, reject){
       var promises = [];
-      let foundDevices = [];
+      foundDevices = [];
       drivers.forEach(driver => { //Scanning with each driver
         var promise = driver.obj.scan(driver._id);
         promises.push(promise);
@@ -55,13 +81,25 @@ class DriverTool {
 
 
   add(id) {
-    let result = this.lastFoundDevices.filter(device => device._id == id);
+    //Check if altready present
+    let found = false;
+    devices.forEach(d => {
+      if(d._id == id){
+        found = true;
+      }
+    });
 
-    console.log('ID requested: ' + id);
-    console.log(this.lastFoundDevices);
-    console.log('Result', result);
+    if(!found){ //If not found add it
+      // Looking for the correct device
+      let newDevice = foundDevices.filter(d => d._id == id)[0];
+      devices.push(newDevice);
+    }
+    return devices;
+  }
 
-    return result;
+
+  send(interaction) {
+    //ToDo
   }
 }
 

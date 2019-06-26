@@ -14,7 +14,8 @@ const deviceSchema = mongoose.Schema({ //This is just a blueprint
   capabilities: { type: Capability, required: false },
   lastActive: { type: Date, required: false },
   address: { type: String, required: false },
-  driver_id: { type: String, required: false },
+  driverID: { type: String, required: false },
+  deviceID: { type: String, required: false },
   online: { type: Boolean, require: false }
 });
 

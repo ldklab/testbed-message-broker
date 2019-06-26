@@ -37,7 +37,7 @@ export class DevicesConnectedComponent implements OnInit {
 
   add() {
     const dialogRef = this.dialog.open(AddDeviceComponent, {
-      //width: '250px',
+      width: '60%',
       data: {}
     });
     /*

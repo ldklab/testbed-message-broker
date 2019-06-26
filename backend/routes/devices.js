@@ -6,6 +6,8 @@ const DriverTools = require('../drivers/drivers');
 
 const DT = new DriverTools();
 
+let availableDevices = [];
+
 module.exports = function(io){
 
   router.get('', function (req, res) {
@@ -33,7 +35,18 @@ module.exports = function(io){
 
     DT.scan()
     .then(devices => {
-      res.status(200).send(devices);
+
+      availableDevices = [];
+      devices.forEach(device => availableDevices.push(device));
+
+      //TEST
+      /*availableDevices.push(new Device({
+        name: "Test",
+        address: '192.168.0.54',
+        lastActive: Date.now()
+      }));*/
+
+      res.status(200).send(availableDevices);
     }).catch(e => {
       res.status(500).send({'message': 'Something bad happened!', 'error': e});
     });

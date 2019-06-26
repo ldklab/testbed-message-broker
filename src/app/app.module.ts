@@ -24,7 +24,9 @@ import {  MatGridListModule,
           MatFormFieldModule,
           MatInputModule,
           MatDialogModule,
-          MatProgressSpinnerModule } from '@angular/material';
+          MatProgressSpinnerModule,
+          MatTableModule,
+          MatSortModule } from '@angular/material';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -60,7 +62,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent],

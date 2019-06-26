@@ -1,20 +1,37 @@
+<h1 mat-dialog-title>Devices available</h1>
 <mat-dialog-content>
 
   <mat-spinner *ngIf='loading'  style='margin: auto'></mat-spinner>
 
-  <table width="100%" border='1'>
-    <tr *ngFor='let device of devices'>
-      <td>
-        {{ device.name }}
-      </td>
-      <td>
+  <table mat-table [dataSource]="devices" *ngIf='!loading' class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let device"> {{ device.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ip">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let device"> {{ device.address }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastActive">
+      <th mat-header-cell *matHeaderCellDef> Last active </th>
+      <td mat-cell *matCellDef="let device"> {{ device.lastActive | date:'dd/MMM/yy @ HH:mm:ss' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="addButton">
+      <th mat-header-cell *matHeaderCellDef> Add </th>
+      <td mat-cell *matCellDef="let device">
         <button
-          mat-raised-button
-          color='primary'
-          (click)='addDevice(device._id)'
-          >Add</button>
+        mat-raised-button
+        color='primary'
+        (click)='addDevice(device._id)'
+        >Add</button>
       </td>
-    </tr>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
   </table>
 
   <h3>Debug</h3>

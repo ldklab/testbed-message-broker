@@ -20,7 +20,7 @@ server.on('message', function (message, rinfo) {
 
 module.exports = {
   //SEARCH/SCAN for device
-  scan: function(){
+  scan: function(driverID){
 
     return new Promise(function (resolve, reject) {
       let reqServer = dgram.createSocket('udp4');
@@ -48,7 +48,8 @@ module.exports = {
           lastActive: D.timestamp,
           address: D.address,
           //port: D.port //Not standard
-          online: true
+          online: true,
+          driver_id: driverID
         });
 
         foundDevices.push(foundDevice);

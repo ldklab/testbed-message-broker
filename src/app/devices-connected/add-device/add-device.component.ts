@@ -12,6 +12,8 @@ export class AddDeviceComponent implements OnInit {
   devices: Device[];
   loading: boolean;
 
+  columnsToDisplay: string[] = ['name', 'ip', 'lastActive', 'addButton'];
+
   constructor(private backend: BackendService) { }
 
   ngOnInit() {

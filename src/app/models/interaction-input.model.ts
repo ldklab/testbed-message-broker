@@ -1,7 +1,7 @@
 export interface InteractionInput{
+  title: string,
   name: string;
   type: string;
-  elements?: string[];
-  text: string;
-  require: boolean;
+  elements?: [{text: string, value: string}];
+  required?: boolean;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Interaction } from '../models/interaction.model';
+import { InteractionInput } from '../models/interaction-input.model';
 
 @Component({
   selector: 'app-test-area',
@@ -10,6 +11,7 @@ import { Interaction } from '../models/interaction.model';
 export class TestAreaComponent implements OnInit {
 
   devices: any = [];
+  customInputs = [];
 
   constructor(private backend: BackendService) { }
 
@@ -26,25 +28,42 @@ export class TestAreaComponent implements OnInit {
     for (const field in myForm.form.controls) {
       values[field] = myForm.form.controls[field].value;
     }
+
     console.log(values);
+
+    console.log('Custom: ', this.customInputs);
 
     // ---------- GENERATING INTERACTION ----------
     const interaction: Interaction = {
       title: values.title,
-      message: values.message,
-      level: values.level
+      description: values.description,
+      level: values.level,
+      device: values.device,
+      inputs: this.customInputs
     };
 
     this.backend.postInteraction(interaction)
     .subscribe(response => {
-      console.log(response);
+      console.log('API Response: ', response);
     });
 
 
-    myForm.reset();
+    this.resetForm(myForm);
+  }
+
+  addInput() {
+    const newField: InteractionInput = {
+      title: 'Device name',
+      name: 'device_name',
+      type: 'text',
+      required: false,
+    };
+
+    this.customInputs.push(newField);
   }
 
   resetForm(myForm) {
     myForm.reset();
+    this.customInputs = [];
   }
 }

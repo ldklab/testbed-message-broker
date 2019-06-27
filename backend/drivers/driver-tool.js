@@ -2,6 +2,8 @@ const Driver = require('../models/driver.model');
 const Device = require('../models/device.model');
 //const TemplateDriver = require('./template.driver');
 
+const request = require('request');
+
 const drivers = [
   /*new Driver({
     name: 'Template',
@@ -98,8 +100,35 @@ class DriverTool {
   }
 
 
-  send(interaction) {
-    //ToDo
+  send(interaction, target) {
+
+    if((target !== null) && (target !== undefined)) {
+      console.log("Target: " + target);
+      console.log('Sending to device'.red);
+      let targetDevice = devices.filter(d => d._id == target)[0];
+      if(targetDevice) {
+        console.log('Device found:'.red);
+        //console.log(targetDevice);
+
+        const API_URL = 'http://'+targetDevice.address+':80';
+        console.log('API URL: ' + API_URL);
+        /*https.post(API_URL, interaction, (error, res, body) => {
+          console.log("Res: ", res);
+        });*/
+
+        console.log('Interaction',
+        );
+        request.post({
+          url: API_URL,
+          body: interaction,
+          json: true
+        }, function(error, response, body){
+          console.log("API Response: ", body);
+        });
+      }
+
+    } //End if(target !== null)
+
   }
 }
 

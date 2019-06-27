@@ -1,10 +1,22 @@
+var colors = require('colors');
+colors.setTheme({
+  warn: 'yellow',
+  debug: 'cyan',
+  error: ['yellow', 'bgRed']
+});
+
+var ip = require("ip");
+
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 
-const interactionRoutes  = require("./routes/interactions")(io); // Passing reference to socket io
-const devicesRoutes  = require("./routes/devices")(io); // Passing reference to socket io
+const DriverTools = require('./drivers/driver-tool');
+
+const DT = new DriverTools();
+const interactionRoutes  = require("./routes/interactions")(io, DT); // Passing reference to socket io
+const devicesRoutes  = require("./routes/devices")(io, DT); // Passing reference to socket io
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -25,11 +37,7 @@ app.use("/api/devices", devicesRoutes);
 
 
 io.on('connection', function (socket) {
-  console.log("Someone connected to Socket.io!");
-  //socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  console.log(colors.warn('Incoming connection on Socket.io'));
 });
 
 

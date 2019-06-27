@@ -6,14 +6,17 @@ var BROADCAST_ADDR = '192.168.0.255';
 
 var Device = require('../models/device.model');
 
-server.bind(function () {
-  var address = server.address();
-  console.log('UDP Server listening on ' + address.address + ":" + address.port);
-  server.setBroadcast(true);
+var colors = require('colors');
+colors.setTheme({
+  warn: 'yellow',
+  debug: 'cyan',
+  error: ['yellow', 'bgRed']
 });
 
-server.on('message', function (message, rinfo) {
-
+server.bind(function () {
+  var address = server.address();
+  console.log(colors.debug('UDP Server listening on ' + address.address + ":" + address.port));
+  server.setBroadcast(true);
 });
 
 
@@ -27,7 +30,8 @@ module.exports = {
       //reqServer.setBroadcast(true);
       //reqServer.bind(PORT); //Autobinding port to avoid conflict / solvabe in other ways
 
-      var myObj = {deviceType: "TV"};
+      let API_URL = 'http://'+ip.address()+':3018/api';
+      var myObj = {deviceType: "TV", API_URL: API_URL};
       var message = new Buffer.from(JSON.stringify(myObj));
       reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
         //console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);

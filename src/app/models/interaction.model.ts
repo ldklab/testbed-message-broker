@@ -5,9 +5,10 @@ export interface Interaction {
   _id?: string;
   timestamp?: Date;
   us_id?: string;
+  device?: string;
   status?: number;
   title: string;
-  message: string;
+  description: string;
   specific?: string;
   instructions?: string[];
   buttons?: InteractionButton[];

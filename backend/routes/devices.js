@@ -2,11 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Device = require('../models/device.model');
-const DriverTools = require('../drivers/driver-tool');
 
-const DT = new DriverTools();
-
-module.exports = function(io){
+module.exports = function(io, DT){
 
   router.get('', function (req, res) {
     let devices = DT.getDevices();

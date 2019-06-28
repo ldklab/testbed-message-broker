@@ -30,7 +30,6 @@ import {  MatGridListModule,
           MatSelectModule } from '@angular/material';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { InteractionDisplayComponent } from './test-area/interaction-display/interaction-display.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
 
@@ -41,7 +40,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     LatestInteractionsComponent,
     TestAreaComponent,
     AddDeviceComponent,
-    InteractionDisplayComponent
   ],
   imports: [
     BrowserModule,

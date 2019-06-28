@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Interaction } from '../models/interaction.model';
 import { InteractionInput } from '../models/interaction-input.model';
+import { asTextData } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-test-area',
@@ -51,15 +52,54 @@ export class TestAreaComponent implements OnInit {
     this.resetForm(myForm);
   }
 
+  removeInput(index) {
+    this.customInputs = this.customInputs.filter((v, i, a) => i !== index);
+  }
+
+
+  testFields() {
+    const newFields: InteractionInput[] = [
+      {
+        title: 'Device name',
+        name: 'device_name',
+        type: 'text',
+        required: false,
+      },
+      {
+        title: 'Test check',
+        name: 'test_check',
+        type: 'checkbox',
+        required: false,
+      },
+      {
+        title: 'Device type',
+        name: 'device_type',
+        type: 'select',
+        elements: [{text: 'PC', value: 'pc'}, {text: 'Smart camera', value: 'smart_camera'}],
+        required: false,
+      }
+    ];
+
+    this.customInputs.push(...newFields);
+  }
+
   addInput() {
     const newField: InteractionInput = {
-      title: 'Device name',
-      name: 'device_name',
-      type: 'text',
+      title: '',
+      name: '',
+      type: '',
+      elements: [{text: '', value: ''}],
       required: false,
     };
 
     this.customInputs.push(newField);
+  }
+
+  addElementSelect(elements) {
+    elements.push({
+      text: '',
+      value: ''
+    });
   }
 
   resetForm(myForm) {

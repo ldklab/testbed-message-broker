@@ -4,7 +4,7 @@ const mongoose = require ('mongoose');
 const Capability = mongoose.Schema({
   in: { type: [String], require: false},
   out: { type: [String], require: false}
-});
+},{ _id : false });
 
 
 const deviceSchema = mongoose.Schema({ //This is just a blueprint

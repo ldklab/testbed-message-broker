@@ -39,7 +39,8 @@
       <div class="inputField">
         Select device:
         <mat-radio-group aria-label="Select an option" name="device" ngModel>
-          <span *ngFor="let device of devices">            <mat-radio-button
+          <span *ngFor="let device of devices">
+            <mat-radio-button
               color="primary"
               [value]="device._id"
               *ngIf="device.online"
@@ -55,14 +56,13 @@
 
 
       <!-- ---------- CUSTOM FIELD ---------- -->
-      <div *ngFor="let input of customInputs" style="border: 1px solid lightgray">
+      <div *ngFor="let input of customInputs; let i = index" class='customField'>
 
           <mat-grid-list cols="2" rowHeight="4:1">
               <mat-grid-tile>
                   <mat-form-field class="inputField">
                       <input matInput
                         [(ngModel)]='input.title'
-                        name="title"
                         placeholder="Title"
                         autocomplete="off"
                         required>
@@ -73,7 +73,6 @@
                   <mat-form-field class="inputField">
                       <input matInput
                       [(ngModel)]='input.name'
-                      name="name"
                       placeholder="Field name"
                       autocomplete="off"
                       required>
@@ -94,28 +93,76 @@
               <mat-grid-tile>
                   <mat-checkbox [(checked)]='input.required' color='primary'>Required</mat-checkbox>
               </mat-grid-tile>
+
+              <span *ngIf="input.type === 'select'">
+                <span *ngFor="let element of input.elements">
+                  <mat-grid-tile>
+                      <mat-form-field class="inputField">
+                          <input matInput
+                            [(ngModel)]='element.text'
+                            placeholder="Text"
+                            autocomplete="off"
+                            required>
+                        </mat-form-field>
+                  </mat-grid-tile>
+
+                  <mat-grid-tile>
+                    <mat-form-field class="inputField">
+                        <input matInput
+                          [(ngModel)]='element.value'
+                          placeholder="Value"
+                          autocomplete="off"
+                          required>
+                      </mat-form-field>
+                  </mat-grid-tile>
+                </span>
+
+                <mat-grid-tile colspan="2">
+                    <button mat-raised-button (click)="addElementSelect(input.elements)">Add element</button>
+                </mat-grid-tile>
+              </span>
+
+
+              <mat-grid-tile colspan="2">
+                  <button mat-raised-button color='warn' (click)="removeInput(i)">Remove custom input</button>
+              </mat-grid-tile>
+
           </mat-grid-list>
 
         </div>
         <!-- ---------- END CUSTOM FIELD ---------- -->
 
-        <button
-          mat-raised-button
-          color="accent"
-          (click)="addInput()">Add custom input</button>
+        <mat-grid-list cols="2" rowHeight="4:1">
+          <mat-grid-tile>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="addInput()">Add custom input</button>
+          </mat-grid-tile>
 
-        <br><br>
+          <mat-grid-tile>
+              <button
+                mat-raised-button
+                color=""
+                (click)="testFields()">Test Fields</button>
+            </mat-grid-tile>
 
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="sendRequest(myForm)"
-          [disabled]="!myForm.valid">Send request</button>
 
-        <button
-          mat-raised-button
-          color="warn"
-          (click)="resetForm(myForm)">Reset From</button>
+          <mat-grid-tile>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="sendRequest(myForm)"
+              [disabled]="!myForm.valid">Send request</button>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="resetForm(myForm)">Reset From</button>
+          </mat-grid-tile>
+        </mat-grid-list>
 
 
   </mat-card-content>

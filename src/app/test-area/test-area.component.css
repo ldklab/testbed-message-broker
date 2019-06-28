@@ -6,3 +6,8 @@
 button {
   margin-right: 1rem;
 }
+
+.customField {
+  border: 1px solid lightgray;
+  margin-bottom: 1rem;
+}

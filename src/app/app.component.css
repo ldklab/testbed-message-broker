@@ -8,17 +8,14 @@ mat-toolbar {
   flex: 1 1 auto;
 }
 
-mat-grid-tile {
-  /*border: 1px solid red;*/
-  height: 100%;
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-app-devices-connected,
-app-latest-interactions,
-app-test-area {
-  width: 98%;
-  height: 100%;
-
-  position: absolute;
-  top: 0px;
+.flex-item {
+  width: 33%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }

@@ -1,10 +1,5 @@
 const mongoose = require ('mongoose');
 
-const InteractionButton = mongoose.Schema({
-  name: { type: String, required: true },
-  text: { type: String, required: true }
-},{ _id : false });
-
 const InteractionInputElement = mongoose.Schema({
   text: { type: String, require: false},
   value: { type: String, require: false}
@@ -19,16 +14,9 @@ const InteractionInput = mongoose.Schema({
   require: { type: Boolean, required: true },
 },{ _id : false });
 
-
-
-const InteractionResponseInput = mongoose.Schema({
+const InteractionResponse = mongoose.Schema({
   name: { type: String, required: false },
   value: { type: String, required: false }
-},{ _id : false });
-
-const InteractionResponse = mongoose.Schema({
-  inputs: { type: [InteractionResponseInput], require: false },
-  buttonClicked: { type: String, require: false }
 },{ _id : false });
 
 
@@ -41,10 +29,9 @@ const interactionSchema = mongoose.Schema({ //This is just a blueprint
   description: { type: String, required: true },
   specific: { type: String, required: false },
   instructions: { type: [String], required: false },
-  buttons: { type: [InteractionButton], required: false },
   level: { type: Number, required: true },
   inputs: { type: [InteractionInput], required: false },
-  response: { type: InteractionResponse, required: false },
+  response: { type: [InteractionResponse], required: false },
   image: { type: String, required: false }
 });
 

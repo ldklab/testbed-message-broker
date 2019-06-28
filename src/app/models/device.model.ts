@@ -1,4 +1,8 @@
-import { Capabilities } from './capabilities.model';
+interface Capabilities {
+  in: string[];
+  out: string[];
+}
+
 
 export interface Device {
   _id?: string;

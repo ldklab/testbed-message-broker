@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Interaction } from 'src/app/models/interaction.model';
 
 @Component({
   selector: 'app-interaction-display',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InteractionDisplayComponent implements OnInit {
 
+  @Input() interaction: Interaction;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  isBoolean(v) {
+    return ((v === 'true'));
   }
 
 }

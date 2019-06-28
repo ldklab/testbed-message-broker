@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
-import { Interaction } from '../models/interaction.model';
-import { InteractionInput } from '../models/interaction-input.model';
-import { asTextData } from '@angular/core/src/view';
+import { Interaction, InteractionInput } from '../models/interaction.model';
 
 @Component({
   selector: 'app-test-area',

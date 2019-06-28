@@ -11,6 +11,7 @@ import { DevicesConnectedComponent } from './devices-connected/devices-connected
 import { LatestInteractionsComponent } from './latest-interactions/latest-interactions.component';
 import { TestAreaComponent } from './test-area/test-area.component';
 import { AddDeviceComponent } from './devices-connected/add-device/add-device.component';
+import { InteractionDisplayComponent } from './latest-interactions/interaction-display/interaction-display.component';
 
 import {  MatGridListModule,
           MatToolbarModule,
@@ -27,7 +28,8 @@ import {  MatGridListModule,
           MatProgressSpinnerModule,
           MatTableModule,
           MatSortModule,
-          MatSelectModule } from '@angular/material';
+          MatSelectModule,
+          MatTabsModule } from '@angular/material';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -40,6 +42,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     LatestInteractionsComponent,
     TestAreaComponent,
     AddDeviceComponent,
+    InteractionDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     MatProgressSpinnerModule,
     MatTableModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,3 +1,23 @@
-<p>
-  interaction-display works!
-</p>
+<mat-tab-group>
+  <mat-tab label="Info">
+    <h1>{{ interaction.title }}</h1>
+    <h4>Level: {{ interaction.level }}</h4>
+
+    <h3>Description</h3>
+    <p>{{ interaction.description }}</p>
+
+    <div *ngIf="interaction.response">
+      <h3>Response data</h3>
+      <div *ngFor="let r of interaction.response">
+        {{ r.name }} : {{ !r.value ? 'false' : r.value }}
+
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Debug">
+    <pre>
+      {{ interaction | json }}
+    </pre>
+  </mat-tab>
+</mat-tab-group>

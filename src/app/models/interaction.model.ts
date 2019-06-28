@@ -1,5 +1,15 @@
-import { InteractionButton } from './interaction-button.model';
-import { InteractionInput } from './interaction-input.model';
+export interface InteractionInput {
+  title: string;
+  name: string;
+  type: string;
+  elements?: {text: string, value: string}[];
+  required?: boolean;
+}
+
+interface InteractionResponse {
+  name: string;
+  value: string;
+}
 
 export interface Interaction {
   _id?: string;
@@ -11,7 +21,7 @@ export interface Interaction {
   description: string;
   specific?: string;
   instructions?: string[];
-  buttons?: InteractionButton[];
   level: number;
   inputs?: InteractionInput[];
+  response?: InteractionResponse[];
 }

@@ -29,17 +29,17 @@ devices = [
   new Device({
     online: true,
     name: 'Smartphone',
-    description: 'Description'
+    description: 'Placeholder device'
   }),
   new Device({
     online: false,
     name: 'Smart TV',
-    description: 'Description'
+    description: 'Placeholder device'
   }),
   new Device({
     online: true,
     name: 'SONOS Speaker',
-    description: 'Description'
+    description: 'Placeholder device'
   })
 ];
 

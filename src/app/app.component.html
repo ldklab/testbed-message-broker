@@ -20,20 +20,17 @@
 </mat-toolbar>
 
 
-<mat-grid-list cols="3">
+<div class="flex-container">
+    <div class="flex-item">
+      <app-devices-connected></app-devices-connected>
+    </div>
 
-  <mat-grid-tile>
-    <app-devices-connected></app-devices-connected>
-  </mat-grid-tile>
+    <div class="flex-item">
+      <app-latest-interactions></app-latest-interactions>
+    </div>
 
-  <mat-grid-tile>
-    <app-latest-interactions></app-latest-interactions>
-  </mat-grid-tile>
+    <div class="flex-item">
+      <app-test-area></app-test-area>
+    </div>
 
-  <mat-grid-tile>
-    <app-test-area></app-test-area>
-  </mat-grid-tile>
-
-
-
-</mat-grid-list>
+</div>

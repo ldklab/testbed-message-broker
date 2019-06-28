@@ -63,7 +63,7 @@ module.exports = function(io, DT){
     if(changedInteraction) {
 
       changedInteraction.status = 2;
-      changedInteraction.response = {inputs: req.body};
+      changedInteraction.response = req.body;
 
       io.emit("newInteractions", interactions);
       res.status(201).json({'message': 'update performed'});
@@ -81,7 +81,7 @@ module.exports = function(io, DT){
   });
 
   interactions = [
-    new Interaction({
+    /*new Interaction({
       title: 'First interaction',
       timestamp: 1560174284309,
       description: '5/Jun/19 @ 15:55:12',
@@ -112,7 +112,7 @@ module.exports = function(io, DT){
       content: 'Content',
       status: 2,
       level: 1
-    })
+    })*/
   ];
 
   return router;

@@ -18,9 +18,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <pre>
-          {{ interaction | json }}
-        </pre>
+        <app-interaction-display [interaction]='interaction'></app-interaction-display>
 
         <button mat-raised-button color="warn" (click)="deleteInteraction(interaction)">Delete</button>
       </mat-expansion-panel>

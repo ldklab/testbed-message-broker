@@ -75,6 +75,18 @@ export class TestAreaComponent implements OnInit {
         type: 'select',
         elements: [{text: 'PC', value: 'pc'}, {text: 'Smart camera', value: 'smart_camera'}],
         required: false,
+      },
+      {
+        title: 'First button',
+        name: 'button_one',
+        type: 'button',
+        required: false,
+      },
+      {
+        title: 'Second button',
+        name: 'button_two',
+        type: 'button',
+        required: false,
       }
     ];
 

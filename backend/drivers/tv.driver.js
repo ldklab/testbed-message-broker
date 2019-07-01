@@ -3,6 +3,7 @@ var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
 var ip = require("ip");
 var BROADCAST_ADDR = '192.168.0.255';
+const request = require('request');
 
 var Device = require('../models/device.model');
 
@@ -69,11 +70,20 @@ module.exports = {
   },
 
   //CHECK availability
-  available :function(){
+  available :function(device){
   },
 
   //SEND interaciton
-  send: function(){
+  send: function(interaction, device){
 
+    const API_URL = 'http://'+device.address+':80';
+    console.log('API URL: ' + API_URL);
+    request.post({
+      url: API_URL,
+      body: interaction,
+      json: true
+    }, function(error, response, body){
+      console.log("API Response: ", body);
+    });
   }
 }

@@ -1,18 +1,18 @@
+const Device = require('../models/device.model');
+
 module.exports = {
 
   //SEARCH/SCAN for device
-  scan: function(){
-    //console.log('Scan called');
-
-    return [];
+  scan: function(driverID){
+    return new Promise(function (resolve, reject) {
+    });
   },
 
   //CHECK availability
-  available :function(){
+  available :function(device){
   },
 
   //SEND interaciton
-  send: function(){
-
+  send: function(interaction, device){
   }
 }

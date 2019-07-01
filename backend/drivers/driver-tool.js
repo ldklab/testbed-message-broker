@@ -100,6 +100,7 @@ class DriverTool {
   }
 
 
+  // @target = Device id
   send(interaction, target) {
 
     if((target !== null) && (target !== undefined)) {
@@ -108,23 +109,12 @@ class DriverTool {
       let targetDevice = devices.filter(d => d._id == target)[0];
       if(targetDevice) {
         console.log('Device found:'.red);
-        //console.log(targetDevice);
+        console.log(targetDevice);
 
-        const API_URL = 'http://'+targetDevice.address+':80';
-        console.log('API URL: ' + API_URL);
-        /*https.post(API_URL, interaction, (error, res, body) => {
-          console.log("Res: ", res);
-        });*/
-
-        console.log('Interaction',
-        );
-        request.post({
-          url: API_URL,
-          body: interaction,
-          json: true
-        }, function(error, response, body){
-          console.log("API Response: ", body);
-        });
+        //Find driver
+        let driver = drivers.filter(d => d._id = targetDevice.driverID)[0];
+        console.log("Driver:", driver);
+        driver.obj.send(interaction, targetDevice);
       }
 
     } //End if(target !== null)

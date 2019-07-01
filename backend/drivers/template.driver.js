@@ -3,25 +3,16 @@ const Device = require('../models/device.model');
 module.exports = {
 
   //SEARCH/SCAN for device
-  scan: function(){
-    console.log('Scan called');
-
-    return [
-      new Device({
-        name: 'Random device'
-      }),
-      new Device({
-        name: 'Other random device'
-      })
-    ];
+  scan: function(driverID){
+    return new Promise(function (resolve, reject) {
+    });
   },
 
   //CHECK availability
-  available :function(){
+  available :function(device){
   },
 
   //SEND interaciton
-  send: function(){
-
+  send: function(interaction, device){
   }
 }

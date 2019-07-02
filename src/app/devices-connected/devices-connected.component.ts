@@ -16,7 +16,8 @@ export class DevicesConnectedComponent implements OnInit {
       online: true,
       name: 'Smartphone',
       description: 'Description',
-      content: 'Content'
+      content: 'Content',
+      address: '192.168.0.?'
     }
   ];
 

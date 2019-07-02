@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const colors = require('colors');
 
 const Device = require('../models/device.model');
 
@@ -16,6 +17,7 @@ module.exports = function(io, DT){
     .then(devices => {
       res.status(200).send(devices);
     }).catch(e => {
+      console.log("About to send 500 Internal Server Error".red);
       res.status(500).send({'message': 'Something bad happened!', 'error': e});
     });
 

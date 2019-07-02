@@ -9,7 +9,7 @@ var INTERACTION_TIMEOUT = 30; //30 secs
 
 module.exports = function(io, DT){
 
-  //Timeout
+  //Check if an interaction has timed out
   setInterval(() => {
     let pendingInteractions = interactions.filter(i => i.status == 1);
     pendingInteractions.forEach(PI => {
@@ -22,6 +22,7 @@ module.exports = function(io, DT){
       //console.log(timePassed);
     });
   }, 1000); // Check every second
+
 
   router.get('', function (req, res) {
     res.status(200).json(interactions);

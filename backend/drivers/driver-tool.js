@@ -16,11 +16,11 @@ const drivers = [
   /*new Driver({
     name: 'Smartphone Driver',
     obj: require('./smartphone.driver')
-  }),
+  }),*/
   new Driver({
     name: 'SONOS Driver',
     obj: require('./speaker.driver')
-  }),*/
+  })
 ];
 
 
@@ -29,16 +29,6 @@ devices = [
   new Device({
     online: true,
     name: 'Smartphone',
-    description: 'Placeholder device'
-  }),
-  new Device({
-    online: false,
-    name: 'Smart TV',
-    description: 'Placeholder device'
-  }),
-  new Device({
-    online: true,
-    name: 'SONOS Speaker',
     description: 'Placeholder device'
   })
 ];

@@ -27,7 +27,7 @@ const drivers = [
 //FAKE DATA
 devices = [
   new Device({
-    online: true,
+    online: false,
     name: 'Smartphone',
     address: '192.168.0.?'
   })

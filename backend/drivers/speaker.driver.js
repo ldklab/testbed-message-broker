@@ -27,20 +27,27 @@ module.exports = {
 
     return new Promise(function (resolve, reject) {
       discovery.discover().then((device) => {
-        console.log(colors.green("Found device "));
+        //console.log(colors.green("Found device "), device);
 
-        foundDevice = new Device({
-          //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
-          name: "SONOS Speaker",
-          lastActive: Date.now(),
-          address: device.host,
-          //port: D.port //Not standard
-          online: true,
-          driverID: driverID
-        });
-        foundDevice.deviceID = foundDevice._id;
+        device.getZoneAttrs()
+        .then(zoneName => {
 
-        foundDevices.push(foundDevice);
+          foundDevice = new Device({
+            //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
+            name: "SONOS " + zoneName.CurrentZoneName,
+            lastActive: Date.now(),
+            address: device.host,
+            //port: D.port //Not standard
+            online: true,
+            driverID: driverID
+          });
+          foundDevice.deviceID = foundDevice._id;
+
+          foundDevices.push(foundDevice);
+        })
+        .catch(e => console.log(e.red));
+
+
       });
 
 
@@ -66,14 +73,13 @@ module.exports = {
           sonosDevice.playNotification({
           uri: audio,
           onlyWhenPlaying: false, // It will query the state anyway, don't play the notification if the speaker is currently off.
-          volume: 50 // Change the volume for the notification, and revert back afterwards.
+          volume: 10 // Change the volume for the notification, and revert back afterwards.
          })
          .then((r) => console.log("Notification played: ", r))
          .catch((e) => console.log("Error on playNotification: ", e));
 
       }).catch(e => console.log(e));
 
-    console.log(colors.magenta("Interaction request for SONOS"));
     return 2;
   }
 }

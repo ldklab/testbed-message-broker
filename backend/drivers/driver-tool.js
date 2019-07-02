@@ -108,8 +108,7 @@ class DriverTool {
       console.log('Sending to device'.red);
       let targetDevice = devices.filter(d => d._id == target)[0];
       if(targetDevice) {
-        console.log('Device found:'.red);
-        console.log(targetDevice);
+        console.log('Device found:'.red, targetDevice);
 
         //Find driver
         let driver = drivers.filter(d => d._id = targetDevice.driverID)[0];
@@ -117,7 +116,7 @@ class DriverTool {
         driver.obj.send(interaction, targetDevice);
       }
 
-    } //End if(target !== null)
+    } //End if((target !== null) && (target !== undefined))
 
   }
 }

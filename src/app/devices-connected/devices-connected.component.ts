@@ -11,15 +11,7 @@ import { AddDeviceComponent } from './add-device/add-device.component';
 })
 export class DevicesConnectedComponent implements OnInit {
 
-  devices = [
-    {
-      online: true,
-      name: 'Smartphone',
-      description: 'Description',
-      content: 'Content',
-      address: '192.168.0.?'
-    }
-  ];
+  devices = [];
 
   constructor(private backend: BackendService,
     public dialog: MatDialog) { }

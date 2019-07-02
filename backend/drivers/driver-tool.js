@@ -29,7 +29,7 @@ devices = [
   new Device({
     online: true,
     name: 'Smartphone',
-    description: 'Placeholder device'
+    address: '192.168.0.?'
   })
 ];
 
@@ -38,7 +38,7 @@ let foundDevices = [];
 class DriverTool {
 
   constructor() {
-    console.log('New DriverTool');
+    console.log('New DriverTool'.magenta);
   }
 
   getDevices(){
@@ -51,6 +51,7 @@ class DriverTool {
       var promises = [];
       foundDevices = [];
       drivers.forEach(driver => { //Scanning with each driver
+        //console.log("Scanning with driver " + driver.name + "("+driver._id+")");
         var promise = driver.obj.scan(driver._id);
         promises.push(promise);
       }); //End of forEach
@@ -95,14 +96,14 @@ class DriverTool {
 
     if((target !== null) && (target !== undefined)) {
       console.log("Target: " + target);
-      console.log('Sending to device'.red);
+      console.log('Sending Interaction to device'.magenta);
       let targetDevice = devices.filter(d => d._id == target)[0];
       if(targetDevice) {
-        console.log('Device found:'.red, targetDevice);
+        console.log('Device found:'.magenta, targetDevice.address);
 
         //Find driver
-        let driver = drivers.filter(d => d._id = targetDevice.driverID)[0];
-        console.log("Driver:", driver);
+        let driver = drivers.filter(d => d._id == targetDevice.driverID)[0];
+        console.log("Driver found:".magenta, driver.name);
         driver.obj.send(interaction, targetDevice);
       }
 

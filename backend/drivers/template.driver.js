@@ -13,6 +13,7 @@ module.exports = {
   },
 
   //SEND interaciton
+  // Returns status of the Interaction => 1: Pending, 2: Completed, 3: Canceled
   send: function(interaction, device){
   }
 }

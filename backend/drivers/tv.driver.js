@@ -74,6 +74,7 @@ module.exports = {
   },
 
   //SEND interaciton
+  // Returns status of the Interaction => 1: Pending, 2: Completed, 3: Canceled
   send: function(interaction, device){
 
     const API_URL = 'http://'+device.address+':80';
@@ -85,5 +86,7 @@ module.exports = {
     }, function(error, response, body){
       console.log("API Response: ", body);
     });
+
+    return 1;
   }
 }

@@ -19,7 +19,7 @@ var ip = require('ip');
 module.exports = {
 
 
-  //SEARCH/SCAN for device
+  // SEARCH/SCAN for device
   scan: function(driverID){
     let foundDevices = [];
     let discovery = new AsyncDeviceDiscovery();
@@ -51,11 +51,12 @@ module.exports = {
     });
   },
 
-  //CHECK availability
+  // CHECK availability
   available: function(device){
   },
 
-  //SEND interaciton
+  // SEND interaciton
+  // Returns status of the Interaction => 1: Pending, 2: Completed, 3: Canceled
   send: function(interaction, device){
     const sonosDevice = new Sonos(device.address);
 
@@ -73,6 +74,7 @@ module.exports = {
       }).catch(e => console.log(e));
 
     console.log(colors.magenta("Interaction request for SONOS"));
+    return 2;
   }
 }
 

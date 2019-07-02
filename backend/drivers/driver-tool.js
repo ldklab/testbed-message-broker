@@ -104,7 +104,8 @@ class DriverTool {
         //Find driver
         let driver = drivers.filter(d => d._id == targetDevice.driverID)[0];
         console.log("Driver found:".magenta, driver.name);
-        driver.obj.send(interaction, targetDevice);
+        let interactionStatus = driver.obj.send(interaction, targetDevice);
+        interaction.status = interactionStatus;
       }
 
     } //End if((target !== null) && (target !== undefined))

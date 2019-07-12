@@ -42,7 +42,6 @@ module.exports = {
 
       reqServer.on('message', function (message, rinfo) {
         var D = JSON.parse(message);
-        console.log(D);
         //console.log('Received back ('+rinfo.port+'): ', D);
 
         //ToDo: Close socket //Probably the object is destroyed anyway after the 'resolve'
@@ -58,8 +57,8 @@ module.exports = {
           driverID: driverID
         });
 
-        wasFound = foundDevices.filter(d => d.address === foundDevices.address)[0];
-        if(wasFound){
+        wasFound = foundDevices.filter(d => d.address === foundDevice.address);
+        if(wasFound.length === 0){
           foundDevices.push(foundDevice);
         }
       });
@@ -92,6 +91,34 @@ module.exports = {
   //SEND interaciton
   // Returns status of the Interaction => 1: Pending, 2: Completed, 3: Canceled
   send: function(interaction, device){
+    const API_KEY = "key=AAAAx9RniFs:APA91bENgGMkX6tvKnUIDE1FuMsyJPmDhavPCtVichzvBQG1iyi4raXiya3UZ4xF_ocriRZu9xJTjcIgcScii6q4YZATKFL-fHoQeqcTnM-nryTJ2HAlaPyoBkK1y8ANqSy4C1LxvfSV";
+    let jsonObj = {
+      to: "/topics/all", //should be device.<KEY_OF_DEVICE>
+     /* data: {
+        title: interaction.title,
+        message: interaction.description,
+        id: interaction._id,
+        subdata: interaction
+      }*/
+      data: interaction
+    };
 
+
+    request({
+      headers: {
+        'Authorization': API_KEY,
+        'Content-Type': 'application/json'
+      },
+      uri: 'https://fcm.googleapis.com/fcm/send',
+      body: JSON.stringify(jsonObj),
+      method: 'POST'
+    }, function (err, res, body){
+      if(err){
+        console.log(colors.red("Error: ", err));
+      }else{
+        console.log("Body: ", body);
+        console.log("Res:", res);
+      }
+    });
   }
 }

@@ -13,10 +13,10 @@ const drivers = [
     name: 'TV Driver',
     obj: require('./tv.driver')
   }),
-  /*new Driver({
+  new Driver({
     name: 'Smartphone Driver',
     obj: require('./smartphone.driver')
-  }),*/
+  }),
   new Driver({
     name: 'SONOS Driver',
     obj: require('./speaker.driver')

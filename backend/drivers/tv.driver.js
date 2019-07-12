@@ -35,7 +35,7 @@ module.exports = {
       var myObj = {deviceType: "TV", API_URL: API_URL};
       var message = new Buffer.from(JSON.stringify(myObj));
       reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
-        //console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
+        console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
       });
 
       let foundDevices = [];

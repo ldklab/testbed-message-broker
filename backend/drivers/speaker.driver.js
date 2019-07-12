@@ -73,7 +73,7 @@ module.exports = {
           sonosDevice.playNotification({
           uri: audio,
           onlyWhenPlaying: false, // It will query the state anyway, don't play the notification if the speaker is currently off.
-          volume: 10 // Change the volume for the notification, and revert back afterwards.
+          volume: 25 // Change the volume for the notification, and revert back afterwards.
          })
          .then((r) => console.log("Notification played: ", r))
          .catch((e) => console.log("Error on playNotification: ", e));

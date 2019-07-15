@@ -64,7 +64,7 @@ module.exports = function(io, DT){
     if(changedInteraction) {
 
       changedInteraction.status = 2;
-      changedInteraction.response = req.body;
+      changedInteraction.response = req.body.data;
 
       io.emit("newInteractions", interactions);
       res.status(201).json({'message': 'update performed'});

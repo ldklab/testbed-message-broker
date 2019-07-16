@@ -49,7 +49,7 @@ module.exports = function(io, DT){
 
     DT.send(newInteraction, req.body.device);
 
-    res.status(200).json(newInteraction);
+    res.status(201).json(newInteraction);
     io.emit("newInteractions", interactions);
   });
 
@@ -67,7 +67,7 @@ module.exports = function(io, DT){
       changedInteraction.response = req.body.data;
 
       io.emit("newInteractions", interactions);
-      res.status(201).json({'message': 'update performed'});
+      res.status(202).json({'message': 'Interaction updated successfully'});
     }else{
       res.status(404).json({'message': 'Interaction not found'});
     }

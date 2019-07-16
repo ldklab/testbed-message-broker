@@ -28,7 +28,7 @@ module.exports = function(io, DT){
     var devices = DT.add(req.body.id); // Passing the id and looking in previously found devices
 
     io.emit("newDevices", devices);
-    res.status(200).send(devices);
+    res.status(201).send(devices);
   });
 
 

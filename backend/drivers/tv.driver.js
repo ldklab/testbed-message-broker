@@ -54,7 +54,8 @@ module.exports = {
           address: D.address,
           //port: D.port //Not standard
           online: true,
-          driverID: driverID
+          driverID: driverID,
+          capabilities: D.capabilities
         });
 
         foundDevices.push(foundDevice);

@@ -16,6 +16,11 @@ var googleTTS = require('google-tts-api');
 
 var ip = require('ip');
 
+definedCapabilities = {
+  "in": [],
+  "out": ["audio"]
+}
+
 module.exports = {
 
 
@@ -39,7 +44,8 @@ module.exports = {
             address: device.host,
             //port: D.port //Not standard
             online: true,
-            driverID: driverID
+            driverID: driverID,
+            capabilities: definedCapabilities
           });
           foundDevice.deviceID = foundDevice._id;
 

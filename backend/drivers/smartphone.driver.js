@@ -67,7 +67,7 @@ module.exports = {
       });
 
       interval = setInterval(() => {
-        console.log("UDP message sent!".yellow);
+        //console.log("UDP message sent!".yellow);
         let API_URL = 'http://'+ip.address()+':3018/api';
         var myObj = {deviceType: "Smartphone", API_URL: API_URL};
         var message = new Buffer.from(JSON.stringify(myObj));
@@ -78,7 +78,7 @@ module.exports = {
 
       setTimeout(() => {
         reqServer.close();
-        console.log("Timeout for scan of smartphones.".red);
+        //console.log("Timeout for scan of smartphones.".red);
         clearInterval(interval);
         //reject(); // Can't reject the timeout works both if I found something or not
         resolve(foundDevices);

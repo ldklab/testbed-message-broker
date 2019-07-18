@@ -52,14 +52,13 @@ class DriverTool {
           console.log(a);
           let device = devices.filter(d => d.address == a.address)[0];
           if(device){
-            console.log("Device found: " + device.name);
+            //console.log("Device found: " + device.name);
             if(device.online != a.online){ change = true; }
             device.online = a.online;
           }
         })
 
         if(change){
-          console.log("EMITTING");
           this.io.emit("newDevices", devices);
         }
       })

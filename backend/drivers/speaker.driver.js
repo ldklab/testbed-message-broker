@@ -3,6 +3,9 @@ const Device = require('../models/device.model');
 const { AsyncDeviceDiscovery, DeviceDiscovery, Sonos } = require('sonos');
 const colors = require('colors');
 
+
+var ping = require('ping');
+
 var express = require('express');
 var app = express();
 
@@ -67,7 +70,12 @@ module.exports = {
   // CHECK availability
   available: function(device){
     console.log("Checking availability for device: " + device.name + "(" + device.address + ")");
-  },
+    return new Promise(function (resolve, reject) {
+      ping.promise.probe(device.address)
+      .then(r => resolve({"address": r.host, "online": r.alive}))
+      .catch(e => reject(e));
+    });
+;  },
 
   // SEND interaciton
   // Returns status of the Interaction => 1: Pending, 2: Completed, 3: Canceled

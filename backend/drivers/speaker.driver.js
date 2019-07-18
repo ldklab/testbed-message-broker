@@ -69,13 +69,13 @@ module.exports = {
 
   // CHECK availability
   available: function(device){
-    console.log("Checking availability for device: " + device.name + "(" + device.address + ")");
+    console.log("Checking availability for device: " + device.name + " (" + device.address + ")");
     return new Promise(function (resolve, reject) {
       ping.promise.probe(device.address)
       .then(r => resolve({"address": r.host, "online": r.alive}))
       .catch(e => reject(e));
     });
-;  },
+  },
 
   // SEND interaciton
   // Returns status of the Interaction => 1: Pending, 2: Completed, 3: Canceled

@@ -5,6 +5,8 @@ var ip = require("ip");
 var BROADCAST_ADDR = '192.168.0.255';
 const request = require('request');
 
+var ping = require('ping');
+
 var Device = require('../models/device.model');
 
 var colors = require('colors');
@@ -70,8 +72,14 @@ module.exports = {
     });
   },
 
-  //CHECK availability
-  available :function(device){
+  // CHECK availability
+  available: function(device){
+    console.log("Checking availability for device: " + device.name + " (" + device.address + ")");
+    return new Promise(function (resolve, reject) {
+      ping.promise.probe(device.address)
+      .then(r => resolve({"address": r.host, "online": r.alive}))
+      .catch(e => reject(e));
+    });
   },
 
   //SEND interaciton

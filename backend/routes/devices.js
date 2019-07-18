@@ -23,7 +23,6 @@ module.exports = function(io, DT){
 
   });
 
-
   router.post('/scan', function (req, res) {
     var devices = DT.add(req.body.id); // Passing the id and looking in previously found devices
 

@@ -33,6 +33,7 @@
     "mongoose": "^5.6.1",
     "ngx-socket-io": "^2.1.1",
     "nodemon": "^1.19.1",
+    "ping": "^0.2.2",
     "request": "^2.88.0",
     "rxjs": "~6.3.3",
     "socket.io": "^2.2.0",

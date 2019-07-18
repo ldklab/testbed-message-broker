@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 
 const DriverTools = require('./drivers/driver-tool');
 
-const DT = new DriverTools();
+const DT = new DriverTools(io);
 const interactionRoutes  = require("./routes/interactions")(io, DT); // Passing reference to socket io
 const devicesRoutes  = require("./routes/devices")(io, DT); // Passing reference to socket io
 

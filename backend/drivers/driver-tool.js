@@ -29,16 +29,43 @@ devices = [
   new Device({
     online: false,
     name: 'Smartphone',
-    address: '192.168.0.?'
+    address: '192.168.0.?',
+    driverID: 'fakeDriverID'
   })
 ];
 
 let foundDevices = [];
+let io = null;
 
 class DriverTool {
 
-  constructor() {
+  constructor(io) {
     console.log('New DriverTool'.magenta);
+    this.io = io;
+
+    setInterval(() => {
+      var change = false;
+      this.checkAvailability()
+      .then(availabilities => {
+        availabilities.forEach(a => {
+          // Find device
+          console.log(a);
+          let device = devices.filter(d => d.address == a.address)[0];
+          if(device){
+            console.log("Device found: " + device.name);
+            if(device.online != a.online){ change = true; }
+            device.online = a.online;
+          }
+        })
+
+        if(change){
+          console.log("EMITTING");
+          this.io.emit("newDevices", devices);
+        }
+      })
+      .catch((e) => console.log("Error: " + e));
+
+    }, 5000);
   }
 
   getDevices(){
@@ -64,6 +91,41 @@ class DriverTool {
         });
 
         resolve(foundDevices);
+      }).catch(e => {
+        console.log('Error here!');
+        reject(e);
+      });//End Promise.all()
+
+    }); //End of new Promise
+  }
+
+  checkAvailability() {
+
+    return new Promise(function(resolve, reject){
+      var promises = [];
+      // drivers.forEach(driver => { //Scanning with each driver
+      //   var promise = driver.obj.available();
+      //   promises.push(promise);
+      // }); //End of forEach
+
+      devices.forEach(device => {
+        //Search driver of that device
+        let deviceDriver = drivers.filter(driver => driver._id == device.driverID)[0];
+        if(deviceDriver){
+          var p = deviceDriver.obj.available(device);
+          promises.push(p);
+        }
+
+      }); //End of forEach
+
+      Promise.all(promises)
+      .then(availabilityResults => {
+        // Interesting fields -> alive:Boolean, numeric_host:String(ip)
+        let availabilities = [];
+        availabilityResults.forEach(a => {
+          availabilities.push(a);
+        });
+        resolve(availabilities);
       }).catch(e => {
         console.log('Error here!');
         reject(e);

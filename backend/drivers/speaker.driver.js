@@ -66,6 +66,7 @@ module.exports = {
 
   // CHECK availability
   available: function(device){
+    console.log("Checking availability for device: " + device.name + "(" + device.address + ")");
   },
 
   // SEND interaciton

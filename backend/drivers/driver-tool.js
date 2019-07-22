@@ -50,7 +50,7 @@ class DriverTool {
         availabilities.forEach(a => {
           // Find device
           console.log(a);
-          let device = devices.filter(d => d.address == a.address)[0];
+          let device = devices.filter(d => d._id == a._id)[0];
           if(device){
             //console.log("Device found: " + device.name);
             if(device.online != a.online){ change = true; }

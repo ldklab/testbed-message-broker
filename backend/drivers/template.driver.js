@@ -9,7 +9,10 @@ module.exports = {
   },
 
   //CHECK availability
+  // Returns {"_id": device._id, "online": <boolean_with_status>}
   available :function(device){
+    return new Promise(function (resolve, reject) {
+    });
   },
 
   //SEND interaciton

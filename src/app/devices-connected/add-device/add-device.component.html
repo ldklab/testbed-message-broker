@@ -34,9 +34,16 @@
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
   </table>
 
-  <h3>Debug</h3>
+  <!-- <h3>Debug</h3>
   <pre>
     {{ devices | json}}
-  </pre>
+  </pre> -->
+  <br><br><br>
+  <details>
+    <summary>Debug</summary>
+    <pre>
+      {{ devices | json}}
+    </pre>
+  </details>
 
 </mat-dialog-content>

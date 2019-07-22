@@ -14,7 +14,7 @@ export class DevicesConnectedComponent implements OnInit {
   devices = [];
 
   constructor(private backend: BackendService,
-    public dialog: MatDialog) { }
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.backend.getDevices()

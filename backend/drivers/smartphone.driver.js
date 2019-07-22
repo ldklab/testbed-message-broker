@@ -74,7 +74,7 @@ module.exports = {
         reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
           //console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
         });
-      }, 500);
+      }, 1000);
 
       setTimeout(() => {
         reqServer.close();
@@ -82,7 +82,7 @@ module.exports = {
         clearInterval(interval);
         //reject(); // Can't reject the timeout works both if I found something or not
         resolve(foundDevices);
-      }, 3000);
+      }, 3500);
 
     });
   },

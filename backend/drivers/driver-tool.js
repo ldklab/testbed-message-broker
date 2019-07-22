@@ -26,12 +26,12 @@ const drivers = [
 
 //FAKE DATA
 devices = [
-  new Device({
-    online: false,
-    name: 'Smartphone',
-    address: '192.168.0.?',
-    driverID: 'fakeDriverID'
-  })
+  // new Device({
+  //   online: false,
+  //   name: 'Smartphone',
+  //   address: '192.168.0.?',
+  //   driverID: 'fakeDriverID'
+  // })
 ];
 
 let foundDevices = [];
@@ -50,7 +50,7 @@ class DriverTool {
         availabilities.forEach(a => {
           // Find device
           console.log(a);
-          let device = devices.filter(d => d._id == a._id)[0];
+          let device = devices.filter(d => d.address == a.address)[0];
           if(device){
             //console.log("Device found: " + device.name);
             if(device.online != a.online){ change = true; }

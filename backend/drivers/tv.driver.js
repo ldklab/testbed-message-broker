@@ -16,11 +16,11 @@ colors.setTheme({
   error: ['yellow', 'bgRed']
 });
 
-server.bind(function () {
-  var address = server.address();
-  console.log(colors.debug('UDP Server listening on ' + address.address + ":" + address.port));
-  server.setBroadcast(true);
-});
+// server.bind(function () {
+//   var address = server.address();
+//   console.log(colors.debug('UDP Server listening on ' + address.address + ":" + address.port));
+//   server.setBroadcast(true);
+// });
 
 
 
@@ -44,7 +44,7 @@ module.exports = {
 
       reqServer.on('message', function (message, rinfo) {
         var D = JSON.parse(message);
-        //console.log('Received back ('+rinfo.port+'): ', D);
+        //console.log('TV Driver Received back ('+rinfo.port+'): ');
 
         //ToDo: Close socket //Probably the object is destroyed anyway after the 'resolve'
         //reqServer.close();

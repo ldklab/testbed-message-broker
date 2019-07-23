@@ -16,11 +16,11 @@ colors.setTheme({
   error: ['yellow', 'bgRed']
 });
 
-server.bind(function () {
-  var address = server.address();
-  console.log(colors.debug('UDP Server listening on ' + address.address + ":" + address.port));
-  server.setBroadcast(true);
-});
+// server.bind(function () {
+//   var address = server.address();
+//   console.log(colors.debug('UDP Server listening on ' + address.address + ":" + address.port));
+//   server.setBroadcast(true);
+// });
 
 
 
@@ -30,6 +30,7 @@ module.exports = {
 
     return new Promise(function (resolve, reject) {
       let reqServer = dgram.createSocket('udp4');
+
       //reqServer.setBroadcast(true);
       //reqServer.bind(PORT); //Autobinding port to avoid conflict / solvabe in other ways
 
@@ -44,7 +45,7 @@ module.exports = {
 
       reqServer.on('message', function (message, rinfo) {
         var D = JSON.parse(message);
-        //console.log('Received back ('+rinfo.port+'): ', D);
+        //console.log('Smartphone Driver Received back ('+rinfo.port+'): ', D);
 
         //ToDo: Close socket //Probably the object is destroyed anyway after the 'resolve'
         //reqServer.close();
@@ -62,7 +63,7 @@ module.exports = {
 
         wasFound = foundDevices.filter(d => d.address === foundDevice.address);
         if(!wasFound.length){
-          console.log("WASNTFOUND".green, wasFound.length);
+          //console.log("WASNTFOUND".green, wasFound.length);
           foundDevices.push(foundDevice);
         }
       });

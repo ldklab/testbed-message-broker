@@ -107,7 +107,7 @@ export class BackendService {
   // ---------- END INTERACTIONS ----------
 
 
-  snackBarMessage(message: string){
+  snackBarMessage(message: string) {
     this.snackBar.open(message, 'Dismiss');
   }
 }

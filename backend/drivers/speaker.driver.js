@@ -34,30 +34,40 @@ module.exports = {
     //console.log("Scan for speaker called! Driver id: " + driverID);
 
     return new Promise(function (resolve, reject) {
-      discovery.discover().then((device) => {
-        console.log(colors.green("Found device "), device);
+      foundDevice = new Device({
+        //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
+        name: "SONOS Laboratory",
+        lastActive: Date.now(),
+        address: "192.168.0.100",
+        //port: D.port //Not standard
+        online: true,
+        driverID: driverID,
+        capabilities: definedCapabilities
+      });
+      foundDevice.deviceID = foundDevice._id;
+      foundDevices.push(foundDevice);
 
-        device.getZoneAttrs()
-        .then(zoneName => {
+      // discovery.discover().then((device) => {
+      //   console.log(colors.green("Found device "), device);
 
-          foundDevice = new Device({
-            //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
-            name: "SONOS " + zoneName.CurrentZoneName,
-            lastActive: Date.now(),
-            address: device.host,
-            //port: D.port //Not standard
-            online: true,
-            driverID: driverID,
-            capabilities: definedCapabilities
-          });
-          foundDevice.deviceID = foundDevice._id;
+      //   device.getZoneAttrs()
+      //   .then(zoneName => {
 
-          foundDevices.push(foundDevice);
-        })
-        .catch(e => console.log(colors.red(e)));
+      //     foundDevice = new Device({
+      //       //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
+      //       name: "SONOS " + zoneName.CurrentZoneName,
+      //       lastActive: Date.now(),
+      //       address: device.host,
+      //       //port: D.port //Not standard
+      //       online: true,
+      //       driverID: driverID,
+      //       capabilities: definedCapabilities
+      //     });
+      //     foundDevice.deviceID = foundDevice._id;
 
-
-      }).catch(e => console.log(colors.red(e)));
+      //     foundDevices.push(foundDevice);
+      //   }).catch(e => console.log(colors.red(e)));
+      // }).catch(e => console.log(colors.red(e)));
 
 
       setTimeout(() => {

@@ -43,6 +43,11 @@ class DriverTool {
     console.log('New DriverTool'.magenta);
     this.io = io;
 
+    setTimeout(() => {
+      this.io.emit("newDevices", devices); // Reset devices
+      this.io.emit("newInteractions", []); // Reset interactions
+    }, 2000);
+
     setInterval(() => {
       var change = false;
       this.checkAvailability()
@@ -155,24 +160,43 @@ class DriverTool {
   // @target = Device id
   send(interaction, target) {
 
-    if((target !== null) && (target !== undefined)) {
-      console.log("Target: " + target);
+    if(devices.length === 0){
+      return {'status': -1, 'message': 'No devices to send interactions to.'};
+    }
+
+    let targetDevice = null;
+
+    if((target !== null) && (target !== 'undefined')) {
+      console.log("Target: ", target);
       console.log('Sending Interaction to device'.magenta);
-      let targetDevice = devices.filter(d => d._id == target)[0];
+      targetDevice = devices.filter(d => d._id == target)[0];
       if(targetDevice) {
         console.log('Device found:'.magenta, targetDevice.address);
-
-        //Find driver
-        let driver = drivers.filter(d => d._id == targetDevice.driverID)[0];
-        console.log("Driver found:".magenta, driver.name);
-        let interactionStatus = driver.obj.send(interaction, targetDevice);
-        interaction.status = interactionStatus;
       }
 
     } else { //End if((target !== null) && (target !== undefined))
       //No target device => decide which device to send interaction to
 
+      console.log("Tryna send this interaction:".green, interaction);
+      if(interaction.inputs.length === 0){ //If no input send to audio device
+        targetDevice = devices.filter(d => d.capabilities.in.length === 0)[0]; // Most likely sonos
+        targetDevice = (targetDevice === 'undefined') ? devices[0] : targetDevice; //If no device with just output notification select the first device
+      } else { //Look for input capabilities
+        targetDevice = devices.filter(d => d.capabilities.in.length !== 0)[0]; //Search for device with input capabilities
+        if(targetDevice === 'undefined'){
+          console.log("NO DEVICE WITH INPUT CAPABILITIES".red);
+        }
+      }
     }
+
+
+    //Find driver
+    let driver = drivers.filter(d => d._id == targetDevice.driverID)[0];
+    console.log("Driver found:".magenta, driver.name);
+    let interactionStatus = driver.obj.send(interaction, targetDevice);
+    interaction.status = interactionStatus;
+
+    return {'status': 0};
   }
 }
 

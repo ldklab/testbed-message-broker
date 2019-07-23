@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Interaction = require('../models/interaction.model');
+const colors = require('colors');
 
 var progressiveID = 0;
 
@@ -47,10 +48,17 @@ module.exports = function(io, DT){
       ...interactions
     ];
 
-    DT.send(newInteraction, req.body.device);
+    let resSend = DT.send(newInteraction, req.body.device);
+    if(resSend.status === -1){
+      console.log(colors.red(resSend.message));
+      res.status(404).json({'message': resSend.message});
+      newInteraction.status = 3;
+    } else {
+      res.status(201).json(newInteraction);
+    }
 
-    res.status(201).json(newInteraction);
     io.emit("newInteractions", interactions);
+
   });
 
 

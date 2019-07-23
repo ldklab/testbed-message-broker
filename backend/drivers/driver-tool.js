@@ -169,8 +169,10 @@ class DriverTool {
         interaction.status = interactionStatus;
       }
 
-    } //End if((target !== null) && (target !== undefined))
+    } else { //End if((target !== null) && (target !== undefined))
+      //No target device => decide which device to send interaction to
 
+    }
   }
 }
 

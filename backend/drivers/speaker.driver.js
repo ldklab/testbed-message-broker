@@ -35,7 +35,7 @@ module.exports = {
 
     return new Promise(function (resolve, reject) {
       discovery.discover().then((device) => {
-        //console.log(colors.green("Found device "), device);
+        console.log(colors.green("Found device "), device);
 
         device.getZoneAttrs()
         .then(zoneName => {
@@ -54,10 +54,10 @@ module.exports = {
 
           foundDevices.push(foundDevice);
         })
-        .catch(e => console.log(e.red));
+        .catch(e => console.log(colors.red(e)));
 
 
-      });
+      }).catch(e => console.log(colors.red(e)));
 
 
       setTimeout(() => {

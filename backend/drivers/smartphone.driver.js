@@ -33,12 +33,12 @@ module.exports = {
       //reqServer.setBroadcast(true);
       //reqServer.bind(PORT); //Autobinding port to avoid conflict / solvabe in other ways
 
-      let API_URL = 'http://'+ip.address()+':3018/api';
-      var myObj = {deviceType: "Smartphone", API_URL: API_URL};
-      var message = new Buffer.from(JSON.stringify(myObj));
-      reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
-        console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
-      });
+      // let API_URL = 'http://'+ip.address()+':3018/api';
+      // var myObj = {deviceType: "Smartphone", API_URL: API_URL};
+      // var message = new Buffer.from(JSON.stringify(myObj));
+      // reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
+      //   console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
+      // });
 
       let foundDevices = [];
 
@@ -61,20 +61,21 @@ module.exports = {
         });
 
         wasFound = foundDevices.filter(d => d.address === foundDevice.address);
-        if(wasFound.length === 0){
+        if(!wasFound.length){
+          console.log("WASNTFOUND".green, wasFound.length);
           foundDevices.push(foundDevice);
         }
       });
 
       interval = setInterval(() => {
-        //console.log("UDP message sent!".yellow);
-        let API_URL = 'http://'+ip.address()+':3018/api';
-        var myObj = {deviceType: "Smartphone", API_URL: API_URL};
-        var message = new Buffer.from(JSON.stringify(myObj));
-        reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
-          //console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
-        });
-      }, 1000);
+          //console.log("UDP message sent!".yellow);
+          let API_URL = 'http://'+ip.address()+':3018/api';
+          var myObj = {deviceType: "Smartphone", API_URL: API_URL};
+          var message = new Buffer.from(JSON.stringify(myObj));
+          reqServer.send(message, 0, message.length, PORT, BROADCAST_ADDR, function() {
+            console.log("Sent '" + message + "'from ip: " + reqServer.address().address + ":" + reqServer.address().port + " to broadcast addr: " + BROADCAST_ADDR);
+          });
+        }, 1000);
 
       setTimeout(() => {
         reqServer.close();
@@ -82,7 +83,7 @@ module.exports = {
         clearInterval(interval);
         //reject(); // Can't reject the timeout works both if I found something or not
         resolve(foundDevices);
-      }, 3500);
+      }, 3000);
 
     });
   },

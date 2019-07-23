@@ -166,7 +166,7 @@ class DriverTool {
 
     let targetDevice = null;
 
-    if((target !== null) && (target !== 'undefined')) {
+    if((target !== null) && (target !== undefined) && (target !== '')) {
       console.log("Target: ", target);
       console.log('Sending Interaction to device'.magenta);
       targetDevice = devices.filter(d => d._id == target)[0];
@@ -177,17 +177,19 @@ class DriverTool {
     } else { //End if((target !== null) && (target !== undefined))
       //No target device => decide which device to send interaction to
 
-      console.log("Tryna send this interaction:".green, interaction);
+      console.log("Tryna send this interaction:".green, interaction.title);
       if(interaction.inputs.length === 0){ //If no input send to audio device
         targetDevice = devices.filter(d => d.capabilities.in.length === 0)[0]; // Most likely sonos
-        targetDevice = (targetDevice === 'undefined') ? devices[0] : targetDevice; //If no device with just output notification select the first device
+        targetDevice = (targetDevice === undefined) ? devices[0] : targetDevice; //If no device with just output notification select the first device
       } else { //Look for input capabilities
         targetDevice = devices.filter(d => d.capabilities.in.length !== 0)[0]; //Search for device with input capabilities
-        if(targetDevice === 'undefined'){
-          console.log("NO DEVICE WITH INPUT CAPABILITIES".red);
+        if(targetDevice === undefined){
+          return {'status': -1, 'message': 'No devices with input capabilities.'};
         }
       }
     }
+
+    console.log("Sending interaction to: ".green, targetDevice.name);
 
 
     //Find driver

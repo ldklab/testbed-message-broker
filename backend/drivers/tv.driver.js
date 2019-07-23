@@ -87,13 +87,13 @@ module.exports = {
   send: function(interaction, device){
 
     const API_URL = 'http://'+device.address+':80';
-    console.log('API URL: ' + API_URL);
+    //console.log('API URL: ' + API_URL);
     request.post({
       url: API_URL,
       body: interaction,
       json: true
     }, function(error, response, body){
-      console.log("API Response: ", body);
+      //console.log("API Response: ", body);
     });
 
     return 1;

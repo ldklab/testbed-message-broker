@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Interaction } from './models/interaction.model';
 import { Device } from './models/device.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 const API_BASE_URL = 'http://localhost:3018/api/';
 function generateAPIURL(endpoint) {
@@ -22,7 +23,8 @@ export class BackendService {
   interactionsSubject;
 
   constructor(private socket: Socket,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private snackBar: MatSnackBar) {
 
     this.devicesSubject = new Subject<any>();
     this.interactionsSubject = new Subject<any>();
@@ -103,4 +105,9 @@ export class BackendService {
   }
 
   // ---------- END INTERACTIONS ----------
+
+
+  snackBarMessage(message: string){
+    this.snackBar.open(message, 'Dismiss');
+  }
 }

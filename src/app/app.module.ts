@@ -29,7 +29,8 @@ import {  MatGridListModule,
           MatTableModule,
           MatSortModule,
           MatSelectModule,
-          MatTabsModule } from '@angular/material';
+          MatTabsModule,
+          MatSnackBarModule } from '@angular/material';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -70,7 +71,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3019', options: {} };
     MatTableModule,
     MatSortModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

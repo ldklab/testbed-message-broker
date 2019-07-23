@@ -44,6 +44,9 @@ export class TestAreaComponent implements OnInit {
     this.backend.postInteraction(interaction)
     .subscribe(response => {
       console.log('API Response: ', response);
+    }, error => {
+      console.log('API Error: ', error);
+      this.backend.snackBarMessage(error.error.message);
     });
 
 

@@ -92,7 +92,7 @@ module.exports = {
   send: function(interaction, device){
     const sonosDevice = new Sonos(device.address);
 
-    generateAudio(interaction.title)
+    generateAudio(interaction.title + ". " + interaction.description)
     .then(audio => {
 
           sonosDevice.playNotification({

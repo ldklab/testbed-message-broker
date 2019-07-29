@@ -54,7 +54,7 @@ class DriverTool {
       .then(availabilities => {
         availabilities.forEach(a => {
           // Find device
-          console.log(a);
+          //console.log(a);
           let device = devices.filter(d => d.address == a.address)[0];
           if(device){
             //console.log("Device found: " + device.name);

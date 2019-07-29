@@ -79,7 +79,7 @@ module.exports = {
 
   // CHECK availability
   available: function(device){
-    console.log("Checking availability for device: " + device.name + " (" + device.address + ")");
+    //console.log("Checking availability for device: " + device.name + " (" + device.address + ")");
     return new Promise(function (resolve, reject) {
       ping.promise.probe(device.address)
       .then(r => resolve({"_id": device._id, "online": r.alive}))

@@ -191,12 +191,15 @@ class DriverTool {
 
     console.log("Sending interaction to: ".green, targetDevice.name);
 
-
     //Find driver
     let driver = drivers.filter(d => d._id == targetDevice.driverID)[0];
     console.log("Driver found:".magenta, driver.name);
     let interactionStatus = driver.obj.send(interaction, targetDevice);
     interaction.status = interactionStatus;
+
+    if(interaction.inputs.length === 0){
+      interaction.status = 2;
+    }
 
     return {'status': 0};
   }

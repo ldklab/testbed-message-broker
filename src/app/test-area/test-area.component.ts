@@ -24,6 +24,8 @@ export class TestAreaComponent implements OnInit {
   sendRequest(myForm) {
 
     const values: any = {};
+
+    // tslint:disable-next-line: forin
     for (const field in myForm.form.controls) {
       values[field] = myForm.form.controls[field].value;
     }

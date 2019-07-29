@@ -106,7 +106,7 @@ module.exports = {
     const API_KEY = "key=AAAAx9RniFs:APA91bENgGMkX6tvKnUIDE1FuMsyJPmDhavPCtVichzvBQG1iyi4raXiya3UZ4xF_ocriRZu9xJTjcIgcScii6q4YZATKFL-fHoQeqcTnM-nryTJ2HAlaPyoBkK1y8ANqSy4C1LxvfSV";
     let jsonObj = {
       to: "/topics/all", //should be device.<KEY_OF_DEVICE>
-     data: {
+      data: {
         title: interaction.title,
         description: interaction.description,
         id: interaction._id,

@@ -34,40 +34,40 @@ module.exports = {
     //console.log("Scan for speaker called! Driver id: " + driverID);
 
     return new Promise(function (resolve, reject) {
-      foundDevice = new Device({
-        //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
-        name: "SONOS Laboratory",
-        lastActive: Date.now(),
-        address: "192.168.0.100",
-        //port: D.port //Not standard
-        online: true,
-        driverID: driverID,
-        capabilities: definedCapabilities
-      });
-      foundDevice.deviceID = foundDevice._id;
-      foundDevices.push(foundDevice);
+      // foundDevice = new Device({
+      //   //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
+      //   name: "SONOS Laboratory",
+      //   lastActive: Date.now(),
+      //   address: "192.168.0.100",
+      //   //port: D.port //Not standard
+      //   online: true,
+      //   driverID: driverID,
+      //   capabilities: definedCapabilities
+      // });
+      // foundDevice.deviceID = foundDevice._id;
+      // foundDevices.push(foundDevice);
 
-      // discovery.discover().then((device) => {
-      //   console.log(colors.green("Found device "), device);
+      discovery.discover().then((device) => {
+        //console.log(colors.green("Found device "), device);
 
-      //   device.getZoneAttrs()
-      //   .then(zoneName => {
+        device.getZoneAttrs()
+        .then(zoneName => {
 
-      //     foundDevice = new Device({
-      //       //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
-      //       name: "SONOS " + zoneName.CurrentZoneName,
-      //       lastActive: Date.now(),
-      //       address: device.host,
-      //       //port: D.port //Not standard
-      //       online: true,
-      //       driverID: driverID,
-      //       capabilities: definedCapabilities
-      //     });
-      //     foundDevice.deviceID = foundDevice._id;
+          foundDevice = new Device({
+            //deviceID: "testID", // Should be chosen by the device but I'll let mongoose chose
+            name: "SONOS " + zoneName.CurrentZoneName,
+            lastActive: Date.now(),
+            address: device.host,
+            //port: D.port //Not standard
+            online: true,
+            driverID: driverID,
+            capabilities: definedCapabilities
+          });
+          foundDevice.deviceID = foundDevice._id;
 
-      //     foundDevices.push(foundDevice);
-      //   }).catch(e => console.log(colors.red(e)));
-      // }).catch(e => console.log(colors.red(e)));
+          foundDevices.push(foundDevice);
+        }).catch(e => console.log(colors.red(e)));
+      }).catch(e => console.log(colors.red(e)));
 
 
       setTimeout(() => {
@@ -101,7 +101,7 @@ module.exports = {
           volume: 25 // Change the volume for the notification, and revert back afterwards.
          })
          .then((r) => console.log("Notification played: ", r))
-         .catch((e) => console.log("Error on playNotification: ", e));
+         .catch((e) => console.log(colors.red("Error in playNotification: ...")));
 
       }).catch(e => console.log(e));
 

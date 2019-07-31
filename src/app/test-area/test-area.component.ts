@@ -37,7 +37,7 @@ export class TestAreaComponent implements OnInit {
     const interaction: Interaction = {
       title: values.title,
       description: values.description,
-      instructions: values.instructions.split(';'),
+      instructions: values.instructions ? values.instructions.split(';') : [],
       level: values.level,
       device: values.device,
       inputs: this.customInputs

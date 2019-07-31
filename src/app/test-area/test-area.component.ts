@@ -31,17 +31,19 @@ export class TestAreaComponent implements OnInit {
     }
 
     console.log(values);
-
     console.log('Custom: ', this.customInputs);
 
     // ---------- GENERATING INTERACTION ----------
     const interaction: Interaction = {
       title: values.title,
       description: values.description,
+      instructions: values.instructions.split(';'),
       level: values.level,
       device: values.device,
       inputs: this.customInputs
     };
+
+    console.log('Interaction: ', interaction);
 
     this.backend.postInteraction(interaction)
     .subscribe(response => {

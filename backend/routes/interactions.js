@@ -37,6 +37,7 @@ module.exports = function(io, DT){
       us_id: ++progressiveID,
       timestamp: Date.now(),
       status: 1,
+      instructions: req.body.instructions,
       title: req.body.title,
       description: req.body.description,
       level: req.body.level,

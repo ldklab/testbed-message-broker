@@ -43,6 +43,17 @@ export class TestAreaComponent implements OnInit {
       inputs: this.customInputs
     };
 
+    // Check if title&&name&&type are set for each input field
+    let customValid = true;
+    interaction.inputs.forEach(input => {
+      console.log('Input: ', input);
+      if ((input.title.length === 0) || (input.name.length === 0) || (input.type.length === 0)) {
+        this.backend.snackBarMessage('Please fill the custom input(s) properly');
+        customValid = false;
+      }
+    });
+    if (!customValid) { return; }
+
     console.log('Interaction: ', interaction);
 
     this.backend.postInteraction(interaction)
@@ -52,7 +63,6 @@ export class TestAreaComponent implements OnInit {
       console.log('API Error: ', error);
       this.backend.snackBarMessage(error.error.message);
     });
-
 
     this.resetForm(myForm);
   }

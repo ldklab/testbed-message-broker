@@ -126,6 +126,6 @@ GitHub repository: https://github.com/Xfox1/thesis-smartphone-app
 
 2. After sending it, it should appear as pending interaction (yellow dot) in the `Latest interactions` card.
 
-<div style="display:block;text-align:center">
+<p align="center">
   <img src="./.readme/mb_latest_interactions.png"/>
-</div>
+</p>

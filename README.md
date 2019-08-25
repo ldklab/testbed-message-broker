@@ -4,10 +4,10 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" width="80"/>
 
 
-## MessageBroker Documentation
-Index
+----
+
+Table of Contents
 - [MessageBroker Documentation](#messagebroker-documentation)
-  - [MessageBroker Documentation](#messagebroker-documentation-1)
   - [1. Starting Message Broker](#1-starting-message-broker)
   - [2. SONOS Speaker](#2-sonos-speaker)
   - [3. Smart TV](#3-smart-tv)

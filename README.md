@@ -1,34 +1,3 @@
-<!--
-
-# MessageBroker
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
--->
-
 # MessageBroker Documentation
 This project was created with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9 and [NodeJS](https://nodejs.org/) version 10.15.3.  
 <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="80"/>
@@ -57,8 +26,9 @@ npm install
 ng serve
 ```
 It should show the following result:
-
-<img src="./.readme/ng_serve_angular.png"/>
+<span style="display:block;text-align:center">
+  <img src="./.readme/ng_serve_angular.png"/>
+</span>
 
 3. Now it is time to run the back-end, the real application. On another terminal (click the `+` icon on the top right corner of the terminal in VSC) run the following command:
 ```
@@ -66,14 +36,88 @@ nodemon server.js
 ```
 It should show the following result:
 
-<img src="./.readme/nodemon_server_js.png"/>
+<span style="display:block;text-align:center">
+  <img src="./.readme/nodemon_server_js.png"/>
+</span>
 
-## Run
-1. Download the project and extract (if necessary) to a folder
-2. Open a terminal in the folder of the project
-3. Install dependencies: `npm install`
-4. Run angular development server: `ng serve`
-5. Run message broker app: on another terminal `nodemon server.js`
-6. Open a web browser and go to `http://localhost:4200/`
+4. The system is now up and running, to access the interface open a web browser and go to:
+```
+http://localhost:4200/
+```
+
 
 Remember that `ng serve` runs a development server for the angular project. To build run `ng build`. The build artifacts will be stored in the `dist/` directory.
+
+---
+
+## 2. SONOS Speaker
+No actions are required for the speaker to be discoverable by the MB. It has just to be on the same network of the Message Broker.
+
+---
+
+## 3. Smart TV
+GitHub repository: https://github.com/Xfox1/thesis-tv-app.
+
+Since the Smart TV app is emulated using Angular, the steps to run it are almost equal to the ones of the Message Broker:
+
+1. Install dependencies: `npm install`
+2. Run Angular development server: `ng serve`
+3. On another terminal move to the `./server` folder and execute: `nodemon index.js`
+4. On a web browser visit: `http://localhost:4200/`
+
+---
+
+## 4. Smartphone App
+GitHub repository: https://github.com/Xfox1/thesis-smartphone-app
+
+1. After downloading and opening the project with Android Studio connect an Android device via USB to the computer and press the green run (<img src="./.readme/run_button.png">) button in the top right corner.
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/android_studio_top_bar.png"/>
+</span>
+
+2. Wait for the new prompt to show to show the phone connected via USB. If it is not shown, it may be required to enable `USB debugging` from the phone’s settings.
+
+3. Select the device and wait for the app to be installed on it.
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/android_studio_run_app.png"/>
+</span>
+
+4. After the application is installed, it is not required to leave the phone plugged, although it may be useful to go on the `Run` tab (<img src="./.readme/run_button_2.png">) in the bottom left corner, to inspect the debugging messages sent from the app.
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/android_studio_debug.png"/>
+</span>
+
+---
+
+## 5. Add devices to the Message Broker network
+
+1. On the `Connected devices` card click the <img src="./.readme/plus.png"> sign, and wait for the popup to load the discovered devices.
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/mb_add_device.png"/>
+</span>
+
+2. Click `Add` next to all the devices that are needed to join the Message Broker network. They should appear in the `Connected devices` card.
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/mb_connected_devices.png"/>
+</span>
+
+---
+
+## 6. Send interaction
+
+1. In the `Test area` card write complete all the mandatory field (title and description). It is also possible to choose to which device the interaction has to be sent. Custom inputs can be added or a set of predefined test fields can be user (clicking on `Test Fields` button).
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/mb_test_area.png"/>
+</span>
+
+2. After sending it, it should appear as pending interaction (yellow dot) in the `Latest interactions` card.
+
+<span style="display:block;text-align:center">
+  <img src="./.readme/mb_latest_interactions.png"/>
+</span>

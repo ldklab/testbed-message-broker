@@ -4,13 +4,16 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" width="80"/>
 
 ### Index
-1. Starting Message Broker
-2. SONOS Speaker
-3. Smart TV
-4. Smartphone App
-5. Add device to the Message Broker network
-6. Send interaction
+- [MessageBroker Documentation](#messagebroker-documentation)
+    - [Index](#index)
+  - [1. Starting Message Broker](#1-starting-message-broker)
+  - [2. SONOS Speaker](#2-sonos-speaker)
+  - [3. Smart TV](#3-smart-tv)
+  - [4. Smartphone App](#4-smartphone-app)
+  - [5. Add devices to the Message Broker network](#5-add-devices-to-the-message-broker-network)
+  - [6. Send interaction](#6-send-interaction)
 
+<a name="starting_mb"></a>
 ## 1. Starting Message Broker
 GitHub repository: https://github.com/Xfox1/message-broker.
 
@@ -50,11 +53,13 @@ Remember that `ng serve` runs a development server for the angular project. To b
 
 ---
 
+<a name="sonos"></a>
 ## 2. SONOS Speaker
 No actions are required for the speaker to be discoverable by the MB. It has just to be on the same network of the Message Broker.
 
 ---
 
+<a name="smart_tv"></a>
 ## 3. Smart TV
 GitHub repository: https://github.com/Xfox1/thesis-tv-app.
 
@@ -67,6 +72,7 @@ Since the Smart TV app is emulated using Angular, the steps to run it are almost
 
 ---
 
+<a name="smartphone_app"></a>
 ## 4. Smartphone App
 GitHub repository: https://github.com/Xfox1/thesis-smartphone-app
 
@@ -92,6 +98,7 @@ GitHub repository: https://github.com/Xfox1/thesis-smartphone-app
 
 ---
 
+<a name="add_device_to_mb"></a>
 ## 5. Add devices to the Message Broker network
 
 1. On the `Connected devices` card click the <img src="./.readme/plus.png"> sign, and wait for the popup to load the discovered devices.
@@ -108,6 +115,7 @@ GitHub repository: https://github.com/Xfox1/thesis-smartphone-app
 
 ---
 
+<a name="send_interaction"></a>
 ## 6. Send interaction
 
 1. In the `Test area` card write complete all the mandatory field (title and description). It is also possible to choose to which device the interaction has to be sent. Custom inputs can be added or a set of predefined test fields can be user (clicking on `Test Fields` button).

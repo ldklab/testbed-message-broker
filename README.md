@@ -37,8 +37,9 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 ## Run
 1. Download the project and extract (if necessary) to a folder
 2. Open a terminal in the folder of the project
-3. Install dependecies: `npm install`
+3. Install dependencies: `npm install`
 4. Run angular development server: `ng serve`
 5. Run message broker app: on another terminal `nodemon server.js`
+6. Open a web browser and go to `http://localhost:4200/`
 
 Remember that `ng serve` runs a development server for the angular project. To build run `ng build`. The build artifacts will be stored in the `dist/` directory.

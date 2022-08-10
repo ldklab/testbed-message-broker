@@ -5,9 +5,9 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 
 ----
 
-This code was developed by Antonio Mignano, working under the supervision of Lorenzo De Carli at Worcester Polytechnic Institute. Questions/feedback may be directed at Lorenzo De Carli (lorenzo.decarli@ucalgary.ca).
+This code was developed by **Antonio Mignano**, working under the supervision of **Lorenzo De Carli** at **Worcester Polytechnic Institute**. Questions/feedback may be directed at Lorenzo De Carli (**lorenzo.decarli@ucalgary.ca**).
 
-For information about the project within which this code was developed, please refer to our publication: L. De Carli, A. Mignano, "Network Security for Home IoT Devices Must Involve the User: a Position Paper", FPS 2020. [PDF](https://ldklab.github.io/assets/papers/fps20-iot.pdf)
+For information about the project within which this code was developed, please refer to our publication: L. De Carli, A. Mignano, "Network Security for Home IoT Devices Must Involve the User: a Position Paper", FPS 2020. [[PDF]](https://ldklab.github.io/assets/papers/fps20-iot.pdf)
 
 ----
 

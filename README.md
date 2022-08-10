@@ -3,6 +3,11 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="80"/>
 <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" width="80"/>
 
+----
+
+This code was developed by Antonio Mignano, working under the supervision of Lorenzo De Carli at Worcester Polytechnic Institute. Questions/feedback may be directed at Lorenzo De Carli (lorenzo.decarli@ucalgary.ca).
+
+For information about the project within which this code was developed, please refer to our publication: L. De Carli, A. Mignano, "Network Security for Home IoT Devices Must Involve the User: a Position Paper", FPS 2020. [PDF](https://ldklab.github.io/assets/papers/fps20-iot.pdf)
 
 ----
 
@@ -17,7 +22,7 @@ Table of Contents
 
 
 ## 1. Starting Message Broker
-GitHub repository: https://github.com/Xfox1/message-broker.
+GitHub repository: https://github.com/ldklab/testbed-message-broker.
 
 After downloading and extracting it to a folder, open the project with any editor. Using Visual Studio Code is highly suggested.
 
@@ -63,7 +68,7 @@ No actions are required for the speaker to be discoverable by the MB. It has jus
 
 <a name="smart_tv"></a>
 ## 3. Smart TV
-GitHub repository: https://github.com/Xfox1/thesis-tv-app.
+GitHub repository: https://github.com/ldklab/testbed-tv-app.
 
 Since the Smart TV app is emulated using Angular, the steps to run it are almost equal to the ones of the Message Broker:
 
@@ -76,7 +81,7 @@ Since the Smart TV app is emulated using Angular, the steps to run it are almost
 
 
 ## 4. Smartphone App
-GitHub repository: https://github.com/Xfox1/thesis-smartphone-app
+GitHub repository: https://github.com/ldklab/testbed-smartphone-app.
 
 1. After downloading and opening the project with Android Studio connect an Android device via USB to the computer and press the green run (<img src="./.readme/run_button.png">) button in the top right corner.
 

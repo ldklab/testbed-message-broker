@@ -1,7 +1,7 @@
 # MessageBroker Documentation
 This project was created with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9 and [NodeJS](https://nodejs.org/) version 10.15.3.  
 <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="80"/>
-<img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" width="80"/>
+<img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg" width="80"/>
 
 ----
 
